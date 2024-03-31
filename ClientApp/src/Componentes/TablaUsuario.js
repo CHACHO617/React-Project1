@@ -54,4 +54,5 @@ const TablaUsuario = ({ data, setEditar, mostrarModal, setMostrarmodal }) => {
     );
 };
 
+
 export default TablaUsuario;
