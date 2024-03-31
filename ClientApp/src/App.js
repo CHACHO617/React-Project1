@@ -66,6 +66,21 @@ const App = () => {
 
     }
 
+
+    const eliminarUsuario = async (id) => {
+        var respuesta = window.confirm("¿Estás seguro que deseas eliminar el usuario seleccionado?");
+        if (!respuesta) {
+            return;
+        }
+        const response = await fetch("api/usuarios/Eliminar/" + id, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            setMostrarModal(false);
+            mostrarUsuarios();
+        }
+    }
+
     return (
         <Container>
             <Row className="mt-5">
@@ -83,6 +98,8 @@ const App = () => {
                                 setEditar={setEditar}
                                 mostrarModal={mostrarModal}
                                 setMostrarmodal={setMostrarModal}
+
+                                eliminarUsuario={eliminarUsuario }
                             />
                         </CardBody>
                     </Card>

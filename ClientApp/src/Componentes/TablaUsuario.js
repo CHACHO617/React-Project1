@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { Table, Button } from 'reactstrap';
 
-const TablaUsuario = ({ data, setEditar, mostrarModal, setMostrarmodal }) => {
+const TablaUsuario = ({ data, setEditar, mostrarModal, setMostrarmodal, eliminarUsuario }) => {
 
     const enviarDatos = (usuario) => {
         setEditar(usuario)
@@ -42,7 +42,7 @@ const TablaUsuario = ({ data, setEditar, mostrarModal, setMostrarmodal }) => {
                                 <Button color="primary" size="sm" className="me-2" onClick={() => enviarDatos(item)}>
                                     Editar
                                 </Button>
-                                <Button color="danger" size="sm">
+                                <Button color="danger" size="sm" onClick={() => eliminarUsuario(item.idUsuario) }>
                                     Eliminar
                                 </Button>
                             </td>

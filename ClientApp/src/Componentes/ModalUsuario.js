@@ -32,7 +32,7 @@ const ModalUsuario = ({ mostrarModal, setMostrarmodal, guardarUsuario, editar, s
         } else {
             editarUsuario(usuario)
         }
-
+        setUsuario(modeloUsuario)
     }
 
     useEffect(() => {
