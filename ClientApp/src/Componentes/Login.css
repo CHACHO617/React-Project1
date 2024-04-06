@@ -1,0 +1,118 @@
+﻿.div,
+.div * {
+    box-sizing: border-box;
+}
+
+.div {
+    background: #2e313a;
+    border-radius: 1rem;
+    padding: 2rem 2rem 3.5625rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 50px;
+    max-width: 40%;
+    
+}
+
+.login {
+    color: #ffffff;
+    text-align: center;
+    font-family: "IbmPlexSans-Medium", sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 26rem;
+    position: relative;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+    margin: 16px 0;
+    background: #262930;
+    border-radius: 0.625rem;
+    border-style: solid;
+    border-color: #d1d1d1;
+    border-width: 0.0625rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+    min-width:auto;
+    color:#fff;
+}
+
+.input-title {
+    color: #ffffff;
+    text-align: left;
+    font-family: "IbmPlexSans-Medium", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    position: relative;
+}
+
+
+.button {
+    background: #4b57ff;
+    border-radius: 0.625rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.guardar {
+    color: #ffffff;
+    text-align: center;
+    font-family: "IbmPlexSans-Medium", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    
+}
+
+.error-message {
+    background-color: #ffd9d9; /* Red background */
+    border: 1px solid #ff0000; /* Red border */
+    color: #ff0000; /* Red text color */
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Add border-radius */
+    margin-top: 10px; /* Add margin-top */
+    text-align: center; /* Center align text */
+    width: 100%; /* Set width to 100% */
+}
