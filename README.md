@@ -4,17 +4,15 @@
 This project presents the first steps of a system. In these first steps that have been taken the user will be able to register into the system, login and only once they've logged in they'll be able to Create, Read, Update and Delete users that have been created. 
 
 ### Index
-- Introduction:
-  - Technologies being used
-  - Packages
-  - How to run the project
-  - How to use the project
+1. [Introduction](#introduction)
+   - [Technologies Used](#technologies-used)
+   - [Packages](#packages)
+   - [How to Run the Project](#how-to-run-the-project)
+   - [How to Use the Project](#how-to-use-the-project)
+  
+2. [Version 1: CRUD](#version-1-crud)
 
-- V1: CRUD
-  - Description:
-    
-- V2: Register and Login
-  - Description: 
+3. [Version 2: Register and Login](#version-2-register-and-login)
 
 ### Technologies being used
 This is a web MVC project that will use React for the front-end and Dotnet for backend. 
