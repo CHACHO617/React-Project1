@@ -3,6 +3,8 @@
 ## Description
 This project marks the initial phase of system development, offering users the essential functionalities to engage with the platform effectively. Within this foundational stage, users can seamlessly register, log in, and gain access to comprehensive user management features. Once authenticated, users can perform essential CRUD (Create, Read, Update, Delete) operations on user data, ensuring a seamless and efficient user experience.
 
+---
+
 ### Index
 1. [Introduction](https://github.com/CHACHO617/React-Project1/blob/main/README.md#introduction)
    - [Technologies Used](https://github.com/CHACHO617/React-Project1/blob/main/README.md#technologies-being-used)
@@ -14,6 +16,7 @@ This project marks the initial phase of system development, offering users the e
 
 3. [Version 2: Register and Login](https://github.com/CHACHO617/React-Project1/blob/main/README.md#version-2-login)
 
+---
 
 ## Introduction
 
