@@ -94,6 +94,26 @@
     margin: auto;
     color: #fff;
     margin-top: 2rem;
+    border-width:1px;
+}
+
+.button-secondary {
+    background: #2e313a;
+    border-radius: 0.625rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    color: #fff;
+    border-color: white;
+    border-width: 1px;
 }
 
 .guardar {

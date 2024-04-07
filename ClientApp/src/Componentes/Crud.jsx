@@ -71,7 +71,9 @@ const App = () => {
         const response = await fetch("api/usuarios/Editar", {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': `Bearer ` // Add the token with "Bearer" prefix
+
             },
             body: JSON.stringify(usuario)
         })
@@ -90,7 +92,11 @@ const App = () => {
             return;
         }
         const response = await fetch("api/usuarios/Eliminar/" + id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${authToken}` // Add the token with "Bearer" prefix
+            }
+
         });
         if (response.ok) {
             setMostrarModal(false);

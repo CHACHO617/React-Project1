@@ -90,7 +90,7 @@ namespace React_Project1.Controllers
         }
 
 
-        [Authorize]
+        
         [HttpPost]
         [Route("Guardar")]
         public async Task<IActionResult> Guardar([FromBody] Usuario request)
@@ -130,7 +130,7 @@ namespace React_Project1.Controllers
 
         }
 
-        [Authorize]
+        
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] Usuario usuario)
@@ -165,7 +165,7 @@ namespace React_Project1.Controllers
                     {
                 new Claim(ClaimTypes.Name, user.IdUsuario.ToString()),
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(30), // Token expiration time set to 30 minutes
+                    Expires = DateTime.UtcNow.AddMinutes(1), // Token expiration time set to 30 minutes
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 

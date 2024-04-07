@@ -1,6 +1,11 @@
 ﻿import { useNavigate } from 'react-router-dom';
 import React, { useState } from "react";
 import './Login.css'
+import ModalUsuario from "./ModalUsuario";
+
+
+//IMPLEMENNT MODAL REGISTER
+
 
 
 export default function Login() {
@@ -8,8 +13,24 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+    const [mostrarModal, setMostrarModal] = useState(false)
 
+    const guardarUsuario = async (usuario) => {
 
+        const response = await fetch("api/usuarios/Guardar", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(usuario)
+        })
+
+        if (response.ok) {
+            setMostrarModal(!mostrarModal)
+            console.log("OK!!");
+        }
+
+    }
 
 
     const handleLogin = async (e) => {
@@ -38,7 +59,6 @@ export default function Login() {
             setTimeout(() => {
                 setErrorMessage('');
             }, 5000);
-            //here i want to show a message that says "Wrong email or password"
         }
 
 
@@ -65,7 +85,7 @@ export default function Login() {
                     <div className="input-title">Constraseña</div>
                     <input
                         className="input"
-                        type="password"
+                        type="text"
                         placeholder="Contraseña"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -73,6 +93,16 @@ export default function Login() {
                     
                     <button type="submit" className="button">Iniciar sesión</button>
                 </form>
+
+                <button className="button-secondary" onClick={() => setMostrarModal(!mostrarModal)} >Registrarse</button>
+
+                <ModalUsuario
+                    mostrarModal={mostrarModal}
+
+                    setMostrarmodal={setMostrarModal}
+                    guardarUsuario={guardarUsuario}
+
+                />
 
             </div>
         </body>
