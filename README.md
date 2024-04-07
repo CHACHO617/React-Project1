@@ -46,7 +46,7 @@ In order to use the project you must login to the system or register an account.
 ## Version 1: CRUD
 In this version of the project the CRUD operations of the project were implemented, allowing anyone that runs the project to perform any CRUD operation. Here simple actions were performed in a successfull way
 
-![CRUD Image]([url_of_your_image](https://miro.medium.com/v2/resize:fit:1400/1*WxJYUNOWcV1ZDPjiwEfBbA.jpeg))
+![CRUD Image](https://miro.medium.com/v2/resize:fit:1400/1*WxJYUNOWcV1ZDPjiwEfBbA.jpeg)
 
 
 
