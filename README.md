@@ -32,7 +32,9 @@ This is a web MVC project that will use React for the front-end and Dotnet for b
 ### How to run the project
 1. To run this project successfully, ensure you have the specified versions of the required technologies installed: React "18.2.0" and DotNet "6.0.28".
 
-2. Next, you'll need to set up a SQL database. In my configuration, I've named it "IngWebProject." Within this database, create a table named "Usuarios" to store the necessary user information.
+---
+
+3. Next, you'll need to set up a SQL database. In my configuration, I've named it "IngWebProject." Within this database, create a table named "Usuarios" to store the necessary user information.
 - CorreoUsuario
 - NombreUsuario
 - ApelllidoUsuario
