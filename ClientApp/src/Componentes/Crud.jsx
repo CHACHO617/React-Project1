@@ -72,7 +72,7 @@ const App = () => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
-                'Authorization': `Bearer ` // Add the token with "Bearer" prefix
+                'Authorization': `Bearer ${authToken}` // Add the token with "Bearer" prefix
 
             },
             body: JSON.stringify(usuario)

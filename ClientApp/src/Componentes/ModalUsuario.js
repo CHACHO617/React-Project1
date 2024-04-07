@@ -47,7 +47,10 @@ const ModalUsuario = ({ mostrarModal, setMostrarmodal, guardarUsuario, editar, s
 
     const cerrarModal = () => {
         setMostrarmodal(!mostrarModal)
-        setEditar(null)
+        if (editar != null) {
+            setEditar(null)
+        } 
+
     }
 
     return (

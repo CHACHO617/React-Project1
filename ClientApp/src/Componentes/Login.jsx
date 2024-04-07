@@ -4,6 +4,7 @@ import './Login.css'
 import ModalUsuario from "./ModalUsuario";
 
 
+
 //IMPLEMENNT MODAL REGISTER
 
 
@@ -14,6 +15,7 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const [mostrarModal, setMostrarModal] = useState(false)
+
 
     const guardarUsuario = async (usuario) => {
 
@@ -85,7 +87,7 @@ export default function Login() {
                     <div className="input-title">Constraseña</div>
                     <input
                         className="input"
-                        type="text"
+                        type="password"
                         placeholder="Contraseña"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
