@@ -46,6 +46,10 @@ In order to use the project you must login to the system or register an account.
 ## Version 1: CRUD
 In this version of the project the CRUD operations of the project were implemented, allowing anyone that runs the project to perform any CRUD operation. Here simple actions were performed in a successfull way
 
+![CRUD Image]([url_of_your_image](https://miro.medium.com/v2/resize:fit:1400/1*WxJYUNOWcV1ZDPjiwEfBbA.jpeg))
+
+
+
 
 ## Version 2: Login: 
 In this version a Login feature was implemented using JWT security tokens which are generated only if the user has an account. This token allows the user to perform CRUD operations only once it has logged in, taking into account securty measures taken  that dont allow any user to access the crud, only logged in users will have a token and this token is used in order to be authorized to perform crud operations. 
