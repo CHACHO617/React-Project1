@@ -6,13 +6,13 @@ This project presents the first steps of a system. In these first steps that hav
 ### Index
 1. [Introduction](https://github.com/CHACHO617/React-Project1/blob/main/README.md#introduction)
    - [Technologies Used](https://github.com/CHACHO617/React-Project1/blob/main/README.md#technologies-being-used)
-   - [Packages](#packages)
-   - [How to Run the Project](#how-to-run-the-project)
-   - [How to Use the Project](#how-to-use-the-project)
+   - [Packages]([#packages](https://github.com/CHACHO617/React-Project1/blob/main/README.md#packages))
+   - [How to Run the Project](https://github.com/CHACHO617/React-Project1/blob/main/README.md#how-to-run-the-project)
+   - [How to Use the Project](https://github.com/CHACHO617/React-Project1/blob/main/README.md#how-to-use-the-project)
   
-2. [Version 1: CRUD](#version-1-crud)
+2. [Version 1: CRUD](https://github.com/CHACHO617/React-Project1/blob/main/README.md#version-1-crud)
 
-3. [Version 2: Register and Login](#version-2-register-and-login)
+3. [Version 2: Register and Login](https://github.com/CHACHO617/React-Project1/blob/main/README.md#version-2-login)
 
 
 ## Introduction
