@@ -5,7 +5,7 @@ This project presents the first steps of a system. In these first steps that hav
 
 ### Index
 1. [Introduction](https://github.com/CHACHO617/React-Project1/blob/main/README.md#introduction)
-   - [Technologies Used](##technologies-used)
+   - [Technologies Used](https://github.com/CHACHO617/React-Project1/blob/main/README.md#technologies-being-used)
    - [Packages](#packages)
    - [How to Run the Project](#how-to-run-the-project)
    - [How to Use the Project](#how-to-use-the-project)
