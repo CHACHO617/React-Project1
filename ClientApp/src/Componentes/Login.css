@@ -127,9 +127,9 @@
 }
 
 .error-message {
-    background-color: #ffd9d9; /* Red background */
+    background-color: #fff6f6; /* Red background */
     border: 1px solid #ff0000; /* Red border */
-    color: #ff0000; /* Red text color */
+    color: #f70000; /* Red text color */
     padding: 10px; /* Add padding */
     border-radius: 5px; /* Add border-radius */
     margin-top: 10px; /* Add margin-top */
