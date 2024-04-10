@@ -58,4 +58,6 @@ In this version of the project, the CRUD operations have been fully implemented,
 ## Version 2: Login
 In this version, a robust login feature has been incorporated, leveraging JWT security tokens that are exclusively generated for authenticated users. These tokens grant access to CRUD operations, ensuring that only authorized users can manipulate data within the system. By implementing stringent security measures, the system restricts access to CRUD functionalities solely to logged-in users with valid tokens, thus fortifying the overall security framework.
 
+![Login Image](https://i.ibb.co/sP0WndJ/Frame-1171275405.png)
+
 ---
