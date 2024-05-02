@@ -3,8 +3,10 @@
     box-sizing: border-box;
 }
 
-.login-admin {
-    background: #2e313a;
+.login-cliente {
+    background: #bdbdbd;
+    border: solid;
+    border-block-color: black;
     border-radius: 1rem;
     padding: 2rem 2rem 3.5625rem 2rem;
     display: flex;
@@ -17,7 +19,6 @@
     margin: 0 auto;
     margin-top: 50px;
     max-width: 40%;
-    
 }
 
 .login {
@@ -40,7 +41,7 @@
     position: relative;
 }
 
-.input1 {
+.input {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -50,7 +51,7 @@
     flex-shrink: 0;
     position: relative;
     margin: 16px 0;
-    background: #262930;
+    background: #dfdfdf;
     border-radius: 0.625rem;
     border-style: solid;
     border-color: #d1d1d1;
@@ -64,12 +65,12 @@
     align-self: stretch;
     flex-shrink: 0;
     position: relative;
-    min-width:auto;
-    color:#fff;
+    min-width: auto;
+    color: black;
 }
 
-.input-title1 {
-    color: #ffffff;
+.input-title {
+    color: #3f3f3f;
     text-align: left;
     font-family: "IbmPlexSans-Medium", sans-serif;
     font-size: 1.25rem;
@@ -94,7 +95,7 @@
     margin: auto;
     color: #fff;
     margin-top: 2rem;
-    border-width:1px;
+    border-width: 1px;
 }
 
 .button-secondary {
@@ -123,7 +124,6 @@
     font-size: 1.5rem;
     font-weight: 500;
     position: relative;
-    
 }
 
 .error-message {
@@ -137,17 +137,17 @@
     width: 100%; /* Set width to 100% */
 }
 
-.link-button1 {
+.link-button {
     background: none;
     border: none;
     padding: 0;
     font-size: inherit;
-    color: #fff;
+    color: #2e313a;
     text-decoration: underline;
     cursor: pointer;
     text-decoration: underline;
 }
 
-.link-button1:hover {
-    color: dodgerblue;
+.link-button:hover {
+    color: blue;
 }

@@ -17,6 +17,9 @@ namespace React_Project1.Models
         }
 
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
+        public virtual DbSet<Inventario1> Invenatio1 { get; set; } = null!;
+        public virtual DbSet<Inventario2> Invenatio2 { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,6 +29,15 @@ namespace React_Project1.Models
                 optionsBuilder.UseSqlServer("Server=(local); DataBase=IngWebProject;Integrated Security=true");
             }
         }
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=b8wd9kfn1gb26hj3o4od-mysql.services.clever-cloud.com; DataBase=b8wd9kfn1gb26hj3o4od; User Id=ueonfhzqlb4q6mg3; Password=DgE9a7jY1ReAXzpxcx0t;");
+            }
+        }*/
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

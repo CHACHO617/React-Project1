@@ -90,8 +90,8 @@ namespace React_Project1.Controllers
         }
 
 
-        
-        [HttpPost]
+
+        /*[HttpPost]
         [Route("Guardar")]
         public async Task<IActionResult> Guardar([FromBody] Usuario request)
         {
@@ -108,15 +108,133 @@ namespace React_Project1.Controllers
         [Route("Editar")]
         public async Task<IActionResult> Editar([FromBody] Usuario request)
         {
+            request.CorreoUsuario
             _dbcontext.Usuarios.Update(request);
             await _dbcontext.SaveChangesAsync();
 
             return StatusCode(StatusCodes.Status200OK, "ok");
+        }*/
+
+        [HttpPost]
+        [Route("Guardar")]
+        public async Task<IActionResult> Guardar([FromBody] Usuario request)
+        {
+            // Verificar si el correo electrónico ya existe en la base de datos
+            var existingUser = await _dbcontext.Usuarios.FirstOrDefaultAsync(u => u.CorreoUsuario == request.CorreoUsuario);
+            if (existingUser != null)
+            {
+                Console.WriteLine("UsuarioMal");
+                return BadRequest("El correo electrónico ya está registrado en el sistema.");
+            }
+
+            if (!IsValidEmail(request.CorreoUsuario))
+            {
+                Console.WriteLine("UsuarioMal");
+                return BadRequest("El correo ingresado no es válido.");
+            }
+
+            if (!IsValidPassword(request.ContrasenaUsuario))
+            {
+                Console.WriteLine("ContraseñaMal");
+                return BadRequest("La contraseña debe tenre al menos: 1 mayúscula, 1 minúscula, 1 letra, 1 caracter especial, 8 dígitos");
+            }
+
+            await _dbcontext.Usuarios.AddAsync(request);
+            await _dbcontext.SaveChangesAsync();
+
+            return Ok("Usuario guardado exitosamente.");
+        }
+
+        /*[Authorize]
+        [HttpPut]
+        [Route("Editar")]
+        public async Task<IActionResult> Editar([FromBody] Usuario request)
+        {
+
+            if (!IsValidEmail(request.CorreoUsuario))
+            {
+                Console.WriteLine("UsuarioMal");
+                return BadRequest("El correo ingresado no es válido.");
+            }
+
+            if (!IsValidPassword(request.ContrasenaUsuario))
+            {
+                Console.WriteLine("ContraseñaMal");
+                return BadRequest("La contraseña no cumple con los requisitos.\nAl menos: 1 mayúscula, 1 minúscula, 1 letra, 1 caracter especial, 8 dígitos");
+            }
+
+            _dbcontext.Usuarios.Update(request);
+            await _dbcontext.SaveChangesAsync();
+
+            return Ok("Usuario actualizado exitosamente.");
+        }*/
+
+        [Authorize]
+        [HttpPut]
+        [Route("Editar")]
+        public async Task<IActionResult> Editar([FromBody] Usuario request)
+        {
+            // Fetch the existing user from the database
+            var existingUser = await _dbcontext.Usuarios.FindAsync(request.IdUsuario);
+
+            // Check if the existing user is null
+            if (existingUser == null)
+            {
+                return NotFound("Usuario no encontrado.");
+            }
+
+            // Validate other fields except CorreoUsuario
+            if (!IsValidPassword(request.ContrasenaUsuario))
+            {
+                Console.WriteLine("ContraseñaMal");
+                return BadRequest("La contraseña no cumple con los requisitos.\nAl menos: 1 mayúscula, 1 minúscula, 1 letra, 1 caracter especial, 8 dígitos");
+            }
+
+            // Update other fields except CorreoUsuario
+            existingUser.NombreUsuario = request.NombreUsuario;
+            existingUser.ApelllidoUsuario = request.ApelllidoUsuario;
+            existingUser.ContrasenaUsuario = request.ContrasenaUsuario;
+           
+            // Update other fields as needed, but exclude CorreoUsuario
+
+            // Save changes to the database
+            _dbcontext.Usuarios.Update(existingUser);
+            await _dbcontext.SaveChangesAsync();
+
+            return Ok("Usuario actualizado exitosamente.");
         }
 
 
 
-        [Authorize]
+
+        // Validate email format
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Validate password format
+        private bool IsValidPassword(string password)
+        {
+            // Password must have at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character
+            return password.Length >= 8
+                && password.Any(char.IsUpper)
+                && password.Any(char.IsLower)
+                && password.Any(char.IsDigit)
+                && password.Any(c => char.IsSymbol(c) || char.IsPunctuation(c));
+        }
+
+
+
+        //[Authorize]
         [HttpDelete]
         [Route("Eliminar/{id:int}")]
         public async Task<IActionResult> Eliminar(int id)
@@ -165,7 +283,7 @@ namespace React_Project1.Controllers
                     {
                 new Claim(ClaimTypes.Name, user.IdUsuario.ToString()),
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(1), // Token expiration time set to 30 minutes
+                    Expires = DateTime.UtcNow.AddMinutes(30), // Token expiration time set to 30 minutes
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 

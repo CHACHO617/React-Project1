@@ -19,6 +19,7 @@ export default function Login() {
 
     const guardarUsuario = async (usuario) => {
 
+
         const response = await fetch("api/usuarios/Guardar", {
             method: 'POST',
             headers: {
@@ -35,17 +36,17 @@ export default function Login() {
     }
 
 
-    const handleLogin = async (e) => {
+    const handleLoginAdmin = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("/api/usuarios/login", {
+        const response = await fetch("/api/admins/loginadmin", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                correoUsuario: username,
-                contrasenaUsuario: password
+                identificacionAdmin: username,
+                contrasenaAdmin: password
             })
         });
 
@@ -53,7 +54,7 @@ export default function Login() {
             const data = await response.json();
             const authToken = data.token;
             console.log("Token is:" + authToken);
-            console.log("Login successful!");
+            console.log("Login successful ADMIN!");
             navigate('/crud', { state: { authToken } }); 
         } else {
             console.log("Error in login!");
@@ -66,27 +67,31 @@ export default function Login() {
 
     };
 
+    const redirectLoginCliente= () => {
+        window.location.href = 'https://localhost:44491/';
+    };
+
     //THIS IS THE THE KEYPOINT
     return (
         <body>
-            <div className="div">
-                <h1 className="login">Login</h1>
+            <div className="login-admin">
+                <h1 className="login">Login Admin</h1>
 
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-                <form onSubmit={handleLogin}>
-                    <div className="input-title">Usuario</div>
+                <form onSubmit={handleLoginAdmin}>
+                    <div className="input-title1">Usuario</div>
                     <input
-                        className="input"
+                        className="input1"
                         type="text"
                         placeholder="Nombre de usuario"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
 
-                    <div className="input-title">Constraseña</div>
+                    <div className="input-title1">Constraseña</div>
                     <input
-                        className="input"
+                        className="input1"
                         type="password"
                         placeholder="Contraseña"
                         value={password}
@@ -96,7 +101,7 @@ export default function Login() {
                     <button type="submit" className="button">Iniciar sesión</button>
                 </form>
 
-                <button className="button-secondary" onClick={() => setMostrarModal(!mostrarModal)} >Registrarse</button>
+                <button className="link-button1" onClick={redirectLoginCliente} >Soy Cliente</button>
 
                 <ModalUsuario
                     mostrarModal={mostrarModal}

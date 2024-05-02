@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const App = () => {
 
+    /*CRUD USUARIOS*/
     const [usuarios, setUsuarios] = useState([])
     const [mostrarModal, setMostrarModal] = useState(false)
     const [editar, setEditar] = useState(null)
@@ -51,6 +52,7 @@ const App = () => {
 
     const guardarUsuario = async (usuario) => {
 
+
         const response = await fetch("api/usuarios/Guardar", {
             method: 'POST',
             headers: {
@@ -63,10 +65,16 @@ const App = () => {
             setMostrarModal(!mostrarModal)
             mostrarUsuarios();
         }
+        else {
+            const errorMessage = await response.text();
+            alert(errorMessage)
+        }
 
     }
 
     const editarUsuario = async (usuario) => {
+
+        
 
         const response = await fetch("api/usuarios/Editar", {
             method: 'PUT',
@@ -81,6 +89,11 @@ const App = () => {
         if (response.ok) {
             setMostrarModal(!mostrarModal)
             mostrarUsuarios();
+
+        }
+        else {
+            const errorMessage = await response.text();
+            alert(errorMessage)
         }
 
     }
@@ -104,43 +117,56 @@ const App = () => {
         }
     }
 
+    const redirectInventario1 = () => {
+        window.location.href = 'https://localhost:44491/crudinventario1';
+    };
+
+
     return (
-        <Container>
-            <Row className="mt-5">
-                <Col sm="12">
-                    <Card>
-                        <CardHeader>
-                            <h5>Usuarios</h5>
-                        </CardHeader>
-                        <CardBody>
-                            <Button size="sm" color="success" onClick={() => setMostrarModal(!mostrarModal)}>
-                                Nuevo Usuario
-                            </Button>
-                            <hr />
-                            <TablaUsuario data={usuarios}
-                                setEditar={setEditar}
-                                mostrarModal={mostrarModal}
-                                setMostrarmodal={setMostrarModal}
+        <div>
+            <div className="d-flex justify-content-center mt-3">
+                <Button color="primary" style={{ marginRight: "40px" }} onClick={redirectInventario1}>Inventario 1</Button>
+                <Button color="primary" onClick={() => console.log("Navigate to Inventario 2")}>Inventario 2</Button>
+            </div>
 
-                                eliminarUsuario={eliminarUsuario}
-                            />
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
+            <Container>
+                <Row className="mt-5">
+                    <Col sm="12">
+                        <Card>
+                            <CardHeader>
+                                <h5>Usuarios</h5>
+                            </CardHeader>
+                            <CardBody>
+                                <Button size="sm" color="success" onClick={() => setMostrarModal(!mostrarModal)}>
+                                    Nuevo Usuario
+                                </Button>
+                                <hr />
+                                <TablaUsuario data={usuarios}
+                                    setEditar={setEditar}
+                                    mostrarModal={mostrarModal}
+                                    setMostrarmodal={setMostrarModal}
 
-            <ModalUsuario
-                mostrarModal={mostrarModal}
+                                    eliminarUsuario={eliminarUsuario}
+                                />
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
 
-                setMostrarmodal={setMostrarModal}
-                guardarUsuario={guardarUsuario}
+                <ModalUsuario
+                    mostrarModal={mostrarModal}
 
-                editar={editar}
-                setEditar={setEditar}
-                editarUsuario={editarUsuario}
-            />
+                    setMostrarmodal={setMostrarModal}
+                    guardarUsuario={guardarUsuario}
 
-        </Container>
+                    editar={editar}
+                    setEditar={setEditar}
+                    editarUsuario={editarUsuario}
+                />
+
+            </Container>
+        </div>
+       
     );
 };
 

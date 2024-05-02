@@ -7,6 +7,8 @@ import TablaUsuario from "./Componentes/TablaUsuario";
 import { Routes, Route } from 'react-router-dom';
 import Crud from "./Componentes/Crud";
 import Login from "./Componentes/Login";
+import LoginCliente from "./Componentes/LoginCliente"
+import Inventario1 from "./Componentes/Inventario1";
 
 const App = () => {
 
@@ -15,8 +17,9 @@ const App = () => {
      <div className="App">
           <Routes>
             <Route path="/crud" element={<Crud />} />
-            <Route index element={<Login />} />
-           
+            <Route index element={<LoginCliente />} />
+            <Route path="/loginadmin" element={<Login />} />
+            <Route path="/crudinventario1" element ={<Inventario1/>}/>
         </Routes>
     </div>
 
