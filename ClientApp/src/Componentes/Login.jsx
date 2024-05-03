@@ -1,5 +1,5 @@
 ﻿import { useNavigate } from 'react-router-dom';
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import './Login.css'
 import ModalUsuario from "./ModalUsuario";
 
@@ -16,6 +16,10 @@ export default function Login() {
     const navigate = useNavigate();
     const [mostrarModal, setMostrarModal] = useState(false)
 
+    // Reset authToken when the component mounts
+    useEffect(() => {
+        localStorage.removeItem('authToken');
+    }, []);
 
     const guardarUsuario = async (usuario) => {
 
@@ -54,6 +58,7 @@ export default function Login() {
             const data = await response.json();
             const authToken = data.token;
             console.log("Token is:" + authToken);
+            localStorage.setItem('authToken', authToken);
             console.log("Login successful ADMIN!");
             navigate('/crud', { state: { authToken } }); 
         } else {

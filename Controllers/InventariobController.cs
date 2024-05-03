@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using React_Project1.Models;
 
@@ -15,6 +16,7 @@ namespace React_Project1.Controllers
             _dbcontext = context;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("ListaInv2")]
         public async Task<IActionResult> ListaInv2()
@@ -24,6 +26,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, inventario2);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("GuardarInv2")]
         public async Task<IActionResult> GuardarInv2([FromBody] Inventario2 request)
@@ -34,6 +37,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
 
+        [Authorize]
         [HttpPut]
         [Route("EditarInv2")]
         public async Task<IActionResult> EditarInv2([FromBody] Inventario2 request)
@@ -53,6 +57,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("EliminarInv2/{id:int}")]
         public async Task<IActionResult> EliminarInv2(int id)

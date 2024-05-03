@@ -17,8 +17,11 @@ const Inventario2 = () => {
     const [mostrarModal, setMostrarModal] = useState(false)
     const [editar, setEditar] = useState(null)
     const location = useLocation();
-    const authToken = location.state?.authToken;
+    //const authToken = location.state?.authToken;
     const navigate = useNavigate();
+
+    const authToken = localStorage.getItem('authToken');
+
 
     const mostrarInventario2 = async () => {
         try {
@@ -115,11 +118,18 @@ const Inventario2 = () => {
         window.location.href = 'https://localhost:44491/crudinventario1';
     };
 
+    const cerrarSesion = () => {
+        window.location.href = 'https://localhost:44491/loginadmin';
+    };
+
     return (
         <div>
-            <div className="d-flex justify-content-center mt-3">
-                <Button color="primary" style={{ marginRight: "40px" }} onClick={redirectInventario1}>Inventario 1</Button>
-                <Button color="primary" onClick={redirectUsuarios}>Usuarios</Button>
+            <div className="d-flex justify-content-between mt-3" style={{ padding: "0 8%" }}>
+                <div>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectInventario1}>Inventario 1</Button>
+                    <Button color="primary" onClick={redirectUsuarios}>Usuarios</Button>
+                </div>
+                <Button color="secondary" onClick={cerrarSesion}>Cerrar Sesión</Button>
             </div>
 
             <Container>

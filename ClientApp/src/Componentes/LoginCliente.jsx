@@ -1,5 +1,5 @@
 ﻿import { useNavigate } from 'react-router-dom';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './LoginCliente.css'
 import ModalUsuario from "C://Users//emeri//source//repos//React-Project1//ClientApp//src//Componentes//ModalUsuario";
 
@@ -15,6 +15,11 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const [mostrarModal, setMostrarModal] = useState(false)
+
+    // Reset authToken when the component mounts
+    useEffect(() => {
+        localStorage.removeItem('authToken');
+    }, []);
 
 
     const guardarUsuario = async (usuario) => {
@@ -57,8 +62,10 @@ export default function Login() {
             const data = await response.json();
             const authToken = data.token;
             console.log("Token is:" + authToken);
+            localStorage.setItem('authToken', authToken);
             console.log("Login successful!");
             navigate('/crud', { state: { authToken } });
+
         } else {
             console.log("Error in login!");
             setErrorMessage('Wrong email or password');

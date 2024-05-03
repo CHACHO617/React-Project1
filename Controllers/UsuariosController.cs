@@ -235,7 +235,7 @@ namespace React_Project1.Controllers
 
 
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete]
         [Route("Eliminar/{id:int}")]
         public async Task<IActionResult> Eliminar(int id)

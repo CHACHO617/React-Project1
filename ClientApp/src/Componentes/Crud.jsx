@@ -15,14 +15,17 @@ const App = () => {
     const [mostrarModal, setMostrarModal] = useState(false)
     const [editar, setEditar] = useState(null)
     const location = useLocation();
-    const authToken = location.state?.authToken;
+    //const authToken = location.state?.authToken;
     const navigate = useNavigate();
 
+    const authToken = localStorage.getItem('authToken');
 
+
+    console.log("AuthTKN: "+authToken)
 
     const mostrarUsuarios = async () => {
         try {
-            let token = authToken; // Replace with your actual token
+            //let token = authToken; // Replace with your actual token
 
             const response = await fetch("api/usuarios/Lista", {
                 method: 'GET',
@@ -120,16 +123,24 @@ const App = () => {
     const redirectInventario1 = () => {
         window.location.href = 'https://localhost:44491/crudinventario1';
     };
+
     const redirectInventario2 = () => {
         window.location.href = 'https://localhost:44491/crudinventario2';
+    };
+
+    const cerrarSesion = () => {
+        window.location.href = 'https://localhost:44491/loginadmin';
     };
 
 
     return (
         <div>
-            <div className="d-flex justify-content-center mt-3">
-                <Button color="primary" style={{ marginRight: "40px" }} onClick={redirectInventario1}>Inventario 1</Button>
-                <Button color="primary" onClick={redirectInventario2}>Inventario 2</Button>
+            <div className="d-flex justify-content-between mt-3" style={{ padding: "0 8%" }}>
+                <div>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectInventario1}>Inventario 1</Button>
+                    <Button color="primary" onClick={redirectInventario2}>Inventario 2</Button>
+                </div>
+                <Button color="secondary" onClick={cerrarSesion}>Cerrar Sesión</Button>
             </div>
 
             <Container>
