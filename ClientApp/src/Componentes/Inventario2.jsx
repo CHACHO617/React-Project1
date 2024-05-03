@@ -3,25 +3,26 @@ import { Col, Container, Row, Card, CardHeader, CardBody, Button } from "reactst
 import { useLocation } from 'react-router-dom';
 import ModalUsuario from "./ModalUsuario";
 import { useNavigate } from 'react-router-dom';
-import TablaInventario1 from "./TablaInventario1";
-import ModalInventario1 from "./ModalInventario1";
- 
+import TablaInventario2 from "./TablaInventario2";
+import ModalInventario2 from "./ModalInventario2";
+//Faltan imports
 
 
 
-const Inventario1 = () => {
 
-    /*CRUD INVENTARIO 1*/
-    const [inventario1, setInventario1] = useState([])
+const Inventario2 = () => {
+
+    /*CRUD INVENTARIO 2*/
+    const [inventario2, setInventario2] = useState([])
     const [mostrarModal, setMostrarModal] = useState(false)
     const [editar, setEditar] = useState(null)
     const location = useLocation();
     const authToken = location.state?.authToken;
     const navigate = useNavigate();
 
-    const mostrarInventario1 = async () => {
+    const mostrarInventario2 = async () => {
         try {
-            const response = await fetch("api/inventarioa/ListaInv1", {
+            const response = await fetch("api/inventariob/ListaInv2", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,7 +31,7 @@ const Inventario1 = () => {
             });
             if (response.ok) {
                 const data = await response.json();
-                setInventario1(data);
+                setInventario2(data);
                 console.log("data retrieved");
             } else {
                 console.log("Error fetching data");
@@ -41,22 +42,22 @@ const Inventario1 = () => {
     };
 
     useEffect(() => {
-        mostrarInventario1();
+        mostrarInventario2();
     }, []);
 
-    const guardarInventario1 = async (inventario1) => {
+    const guardarInventario2 = async (inventario2) => {
 
-        const response = await fetch("api/inventarioa/GuardarInv1", {
+        const response = await fetch("api/inventariob/GuardarInv2", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(inventario1)
+            body: JSON.stringify(inventario2)
         })
 
         if (response.ok) {
             setMostrarModal(!mostrarModal)
-            mostrarInventario1();
+            mostrarInventario2();
         }
         else {
             const errorMessage = await response.text();
@@ -65,21 +66,21 @@ const Inventario1 = () => {
 
     }
 
-    const editarInventario1 = async (inventario1) => {
+    const editarInventario2 = async (inventario2) => {
 
-        const response = await fetch("api/inventarioa/EditarInv1", {
+        const response = await fetch("api/inventariob/EditarInv2", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
                 'Authorization': `Bearer ${authToken}` // Add the token with "Bearer" prefix
 
             },
-            body: JSON.stringify(inventario1)
+            body: JSON.stringify(inventario2)
         })
 
         if (response.ok) {
             setMostrarModal(!mostrarModal)
-            mostrarInventario1();
+            mostrarInventario2();
 
         }
         else {
@@ -89,12 +90,12 @@ const Inventario1 = () => {
 
     }
 
-    const eliminarInventario1 = async (id) => {
+    const eliminarInventario2 = async (id) => {
         var respuesta = window.confirm("¿Estás seguro que deseas eliminar el usuario seleccionado?");
         if (!respuesta) {
             return;
         }
-        const response = await fetch("api/inventarioa/EliminarInv1/" + id, {
+        const response = await fetch("api/inventariob/EliminarInv2/" + id, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${authToken}` // Add the token with "Bearer" prefix
@@ -103,22 +104,22 @@ const Inventario1 = () => {
         });
         if (response.ok) {
             setMostrarModal(false);
-            mostrarInventario1();
+            mostrarInventario2();
         }
     }
 
     const redirectUsuarios = () => {
         window.location.href = 'https://localhost:44491/crud';
     };
-    const redirectInventario2 = () => {
-        window.location.href = 'https://localhost:44491/crudinventario2';
+    const redirectInventario1 = () => {
+        window.location.href = 'https://localhost:44491/crudinventario1';
     };
 
     return (
         <div>
             <div className="d-flex justify-content-center mt-3">
-                <Button color="primary" style={{ marginRight: "40px" }} onClick={redirectUsuarios}>Usuarios</Button>
-                <Button color="primary" onClick={redirectInventario2}>Inventario 2</Button>
+                <Button color="primary" style={{ marginRight: "40px" }} onClick={redirectInventario1}>Inventario 1</Button>
+                <Button color="primary" onClick={redirectUsuarios}>Usuarios</Button>
             </div>
 
             <Container>
@@ -126,35 +127,35 @@ const Inventario1 = () => {
                     <Col sm="12">
                         <Card>
                             <CardHeader>
-                                <h5>Inventario 1</h5>
+                                <h5>Inventario 2</h5>
                             </CardHeader>
                             <CardBody>
                                 <Button size="sm" color="success" onClick={() => setMostrarModal(!mostrarModal)}>
                                     Nuevo Ingrediente
                                 </Button>
                                 <hr />
-                                <TablaInventario1
-                                    data={inventario1}
+                                <TablaInventario2
+                                    data={inventario2}
                                     setEditar={setEditar}
                                     mostrarModal={mostrarModal}
                                     setMostrarmodal={setMostrarModal}
 
-                                    eliminarInventario1={eliminarInventario1}
+                                    eliminarInventario2={eliminarInventario2}
                                 />
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
 
-                <ModalInventario1
+                <ModalInventario2
                     mostrarModal={mostrarModal}
 
                     setMostrarmodal={setMostrarModal}
-                    guardarInventario1={guardarInventario1}
+                    guardarInventario2={guardarInventario2}
 
                     editar={editar}
                     setEditar={setEditar}
-                    editarInventario1={editarInventario1}
+                    editarInventario2={editarInventario2}
                 />
 
             </Container>
@@ -163,4 +164,4 @@ const Inventario1 = () => {
     );
 };
 
-export default Inventario1;
+export default Inventario2;

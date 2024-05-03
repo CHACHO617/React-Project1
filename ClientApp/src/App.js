@@ -9,6 +9,7 @@ import Crud from "./Componentes/Crud";
 import Login from "./Componentes/Login";
 import LoginCliente from "./Componentes/LoginCliente"
 import Inventario1 from "./Componentes/Inventario1";
+import Inventario2 from "./Componentes/Inventario2";
 
 const App = () => {
 
@@ -19,7 +20,9 @@ const App = () => {
             <Route path="/crud" element={<Crud />} />
             <Route index element={<LoginCliente />} />
             <Route path="/loginadmin" element={<Login />} />
-            <Route path="/crudinventario1" element ={<Inventario1/>}/>
+            <Route path="/crudinventario1" element={<Inventario1 />} />
+            <Route path="/crudinventario2" element={<Inventario2 />} />
+
         </Routes>
     </div>
 

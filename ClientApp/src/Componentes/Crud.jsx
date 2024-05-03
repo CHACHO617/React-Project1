@@ -38,7 +38,7 @@ const App = () => {
                 console.log("Todo está bien");
             } else {
                 console.log("Error en la lista");
-                navigate('/');
+                //navigate('/');
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -120,13 +120,16 @@ const App = () => {
     const redirectInventario1 = () => {
         window.location.href = 'https://localhost:44491/crudinventario1';
     };
+    const redirectInventario2 = () => {
+        window.location.href = 'https://localhost:44491/crudinventario2';
+    };
 
 
     return (
         <div>
             <div className="d-flex justify-content-center mt-3">
                 <Button color="primary" style={{ marginRight: "40px" }} onClick={redirectInventario1}>Inventario 1</Button>
-                <Button color="primary" onClick={() => console.log("Navigate to Inventario 2")}>Inventario 2</Button>
+                <Button color="primary" onClick={redirectInventario2}>Inventario 2</Button>
             </div>
 
             <Container>

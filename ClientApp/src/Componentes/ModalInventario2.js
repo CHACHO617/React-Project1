@@ -2,15 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Input, Label, ModalFooter, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
-const modeloInventario1 = {
-    idInventario1: 0,
-    nombreIngrediente1: "",
-    cantidadIngrediente1: 0,
-    unidadIngrediente1: "",
+const modeloInventario2 = {
+    idInventario2: 0,
+    nombreIngrediente2: "",
+    cantidadIngrediente2: 0,
+    unidadIngrediente2: "",
 }
 
-const ModalInventario1 = ({ mostrarModal, setMostrarmodal, guardarInventario1, editar, setEditar, editarInventario1 }) => {
-    const [inventario1, setInventario1] = useState(modeloInventario1);
+const ModalInventario2 = ({ mostrarModal, setMostrarmodal, guardarInventario2, editar, setEditar, editarInventario2 }) => {
+    const [inventario2, setInventario2] = useState(modeloInventario2);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('Unidades');
 
@@ -18,33 +18,33 @@ const ModalInventario1 = ({ mostrarModal, setMostrarmodal, guardarInventario1, e
 
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
-        setInventario1({
-            ...inventario1,
-            unidadIngrediente1: option
+        setInventario2({
+            ...inventario2,
+            unidadIngrediente2: option
         });
     };
 
     const actualizarDato = (e) => {
-        setInventario1({
-            ...inventario1,
+        setInventario2({
+            ...inventario2,
             [e.target.name]: e.target.value
         });
     }
 
     const enviarDatos = () => {
-        if (inventario1.idInventario1 === 0) {
-            guardarInventario1(inventario1);
+        if (inventario2.idInventario2 === 0) {
+            guardarInventario2(inventario2);
         } else {
-            editarInventario1(inventario1);
+            editarInventario2(inventario2);
         }
-        setInventario1(modeloInventario1);
+        setInventario2(modeloInventario2);
     }
 
     useEffect(() => {
         if (editar != null) {
-            setInventario1(editar);
+            setInventario2(editar);
         } else {
-            setInventario1(modeloInventario1);
+            setInventario2(modeloInventario2);
         }
     }, [editar]);
 
@@ -58,17 +58,17 @@ const ModalInventario1 = ({ mostrarModal, setMostrarmodal, guardarInventario1, e
     return (
         <Modal isOpen={mostrarModal}>
             <ModalHeader>
-                {inventario1.idInventario1 === 0 ? "Nuevo Item" : "Editar Item"}
+                {inventario2.idInventario2 === 0 ? "Nuevo Item" : "Editar Item"}
             </ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
                         <Label>Nombre Ingrediente</Label>
-                        <Input name="nombreIngrediente1" onChange={(e) => actualizarDato(e)} value={inventario1.nombreIngrediente1} />
+                        <Input name="nombreIngrediente2" onChange={(e) => actualizarDato(e)} value={inventario2.nombreIngrediente2} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Cantidad Ingrediente</Label>
-                        <Input name="cantidadIngrediente1" onChange={(e) => actualizarDato(e)} value={inventario1.cantidadIngrediente1} />
+                        <Input name="cantidadIngrediente2" onChange={(e) => actualizarDato(e)} value={inventario2.cantidadIngrediente2} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Unidad Ingrediente</Label>
@@ -97,4 +97,4 @@ const ModalInventario1 = ({ mostrarModal, setMostrarmodal, guardarInventario1, e
     )
 }
 
-export default ModalInventario1;
+export default ModalInventario2;
