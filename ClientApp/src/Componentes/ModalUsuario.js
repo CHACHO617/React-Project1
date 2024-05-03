@@ -97,7 +97,7 @@ const ModalUsuario = ({ mostrarModal, setMostrarmodal, guardarUsuario, editar, s
 
         </Modal>
 
-            )
+    )
 }
 
 export default ModalUsuario;

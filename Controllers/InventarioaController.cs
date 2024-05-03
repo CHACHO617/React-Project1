@@ -40,19 +40,19 @@ namespace React_Project1.Controllers
         {
             var existingItem = await _dbcontext.Invenatio1.FindAsync(request.IdInventario1);
 
-            if (existingItem != null)
+            if (existingItem == null)
             {
                 return NotFound("No hay ese item en el inventario");
             }
 
             existingItem.CantidadIngrediente1 = request.CantidadIngrediente1;
 
-            _dbcontext.Invenatio1.Update(request);
+            _dbcontext.Invenatio1.Update(existingItem); // Actualiza la entidad existente en lugar de agregar una nueva instancia
             await _dbcontext.SaveChangesAsync();
 
             return StatusCode(StatusCodes.Status200OK, "ok");
-
         }
+
 
         [HttpDelete]
         [Route("EliminarInv1/{id:int}")]

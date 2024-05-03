@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import ModalUsuario from "./ModalUsuario";
 import { useNavigate } from 'react-router-dom';
 import TablaInventario1 from "./TablaInventario1";
+import ModalInventario1 from "./ModalInventario1";
  
 
 
@@ -12,7 +13,7 @@ const Inventario1 = () => {
 
     /*CRUD INVENTARIO 1*/
     const [inventario1, setInventario1] = useState([])
-    const [mostrarModal1, setMostrarModal1] = useState(false)
+    const [mostrarModal, setMostrarModal] = useState(false)
     const [editar, setEditar] = useState(null)
     const location = useLocation();
     const authToken = location.state?.authToken;
@@ -54,7 +55,7 @@ const Inventario1 = () => {
         })
 
         if (response.ok) {
-            setMostrarModal1(!mostrarModal1)
+            setMostrarModal(!mostrarModal)
             mostrarInventario1();
         }
         else {
@@ -77,7 +78,7 @@ const Inventario1 = () => {
         })
 
         if (response.ok) {
-            setMostrarModal1(!mostrarModal1)
+            setMostrarModal(!mostrarModal)
             mostrarInventario1();
 
         }
@@ -101,7 +102,7 @@ const Inventario1 = () => {
 
         });
         if (response.ok) {
-            setMostrarModal1(false);
+            setMostrarModal(false);
             mostrarInventario1();
         }
     }
@@ -121,15 +122,15 @@ const Inventario1 = () => {
                                 <h5>Inventario 1</h5>
                             </CardHeader>
                             <CardBody>
-                                <Button size="sm" color="success" onClick={() => setMostrarModal1(!mostrarModal1)}>
+                                <Button size="sm" color="success" onClick={() => setMostrarModal(!mostrarModal)}>
                                     Nuevo Ingrediente
                                 </Button>
                                 <hr />
                                 <TablaInventario1
                                     data={inventario1}
                                     setEditar={setEditar}
-                                    mostrarModal={mostrarModal1}
-                                    setMostrarmodal={setMostrarModal1}
+                                    mostrarModal={mostrarModal}
+                                    setMostrarmodal={setMostrarModal}
 
                                     eliminarInventario1={eliminarInventario1}
                                 />
@@ -138,15 +139,15 @@ const Inventario1 = () => {
                     </Col>
                 </Row>
 
-                <ModalUsuario
-                    mostrarModal={mostrarModal1}
+                <ModalInventario1
+                    mostrarModal={mostrarModal}
 
-                    setMostrarmodal={setMostrarModal1}
-                    guardarUsuario={guardarInventario1}
+                    setMostrarmodal={setMostrarModal}
+                    guardarInventario1={guardarInventario1}
 
                     editar={editar}
                     setEditar={setEditar}
-                    editarUsuario={editarInventario1}
+                    editarInventario1={editarInventario1}
                 />
 
             </Container>

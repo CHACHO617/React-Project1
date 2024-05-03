@@ -121,6 +121,7 @@ namespace React_Project1.Controllers
         {
             // Verificar si el correo electrónico ya existe en la base de datos
             var existingUser = await _dbcontext.Usuarios.FirstOrDefaultAsync(u => u.CorreoUsuario == request.CorreoUsuario);
+            
             if (existingUser != null)
             {
                 Console.WriteLine("UsuarioMal");
