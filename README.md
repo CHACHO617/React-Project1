@@ -61,7 +61,6 @@ In this version, a robust login feature has been incorporated, leveraging JWT se
 ![Login Image](https://i.ibb.co/sP0WndJ/Frame-1171275405.png)
 
 ---
-
 ## Version 3: Admin
 In this latest version, two admin users have been introduced, responsible for managing system information. Upon logging in, the admin receives a unique security token (JWT) to carry out their tasks securely. Their tasks involve CRUD operations across various tables, with built-in validations to maintain data integrity.
 ### Usuarios CRUD:
@@ -86,5 +85,5 @@ Several validations have been implemented to ensure data accuracy and adherence 
 - Ingredient Amount: It's validated that the amount cannot be negative; it may be zero, but not less than that.
 - Ingredient Unit: A selection mechanism is utilized to limit the available units for each ingredient to three options (Unidades, Gramos, Rodajas). This ensures consistency and simplifies management.
 
-
+![Admin Image](https://i.ibb.co/yy9vsZ2/Frame-1171275414.png)
 
