@@ -61,3 +61,30 @@ In this version, a robust login feature has been incorporated, leveraging JWT se
 ![Login Image](https://i.ibb.co/sP0WndJ/Frame-1171275405.png)
 
 ---
+
+## Version 3: Admin
+In this latest version, two admin users have been introduced, responsible for managing system information. Upon logging in, the admin receives a unique security token (JWT) to carry out their tasks securely. Their tasks involve CRUD operations across various tables, with built-in validations to maintain data integrity.
+### Usuarios CRUD:
+Here, the admin possesses the ability to create, read, update, and delete user profiles within the system. It's important to note that the admin role is restricted from altering information related to other admin accounts.
+Several validations have been implemented to ensure data accuracy and security:
+- Correo: This field undergoes validation to ensure the use of a valid email format and that no duplicate email addresses exist in the system. Each email can only be registered once.
+- Nombre: The validation process ensures that the name field cannot be left empty and that it contains at least one capital letter, one lowercase letter, and is a minimum of three characters long.
+- Apellido: Similar to the name validation, the surname field must not be empty, must include at least one capital letter, one lowercase letter, and be at least three characters in length.
+- Contraseña: Passwords undergo validation to guarantee they contain at least one capital letter, one lowercase letter, one number, one special character, and at least a minimun length of 8 characters long. This ensures password strength and enhances system security.
+
+### Inventario 1 CRUD:
+In this scenario, the admin has the capability to manage ingredients within Inventory 1, encompassing the tasks of creating, reading, updating, and deleting them. It's important to note that once an ingredient is created, its name and unit remain fixed, with only the amount being editable during updates.
+Several validations have been implemented to ensure data accuracy and adherence to predefined criteria:
+- Ingredient Name: Validation ensures that this field cannot remain empty, thus requiring each ingredient to have a name.
+- Ingredient Amount: It's validated that the amount cannot be negative; it may be zero, but not less than that.
+- Ingredient Unit: A selection mechanism is utilized to limit the available units for each ingredient to three options (Unidades, Gramos, Rodajas). This ensures consistency and simplifies management.
+
+### Inventario 2 CRUD:
+In this scenario, the admin has the capability to manage ingredients within Inventory 2, encompassing the tasks of creating, reading, updating, and deleting them. It's important to note that once an ingredient is created, its name and unit remain fixed, with only the amount being editable during updates.
+Several validations have been implemented to ensure data accuracy and adherence to predefined criteria:
+- Ingredient Name: Validation ensures that this field cannot remain empty, thus requiring each ingredient to have a name.
+- Ingredient Amount: It's validated that the amount cannot be negative; it may be zero, but not less than that.
+- Ingredient Unit: A selection mechanism is utilized to limit the available units for each ingredient to three options (Unidades, Gramos, Rodajas). This ensures consistency and simplifies management.
+
+
+
