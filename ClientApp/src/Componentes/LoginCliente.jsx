@@ -64,7 +64,8 @@ export default function Login() {
             console.log("Token is:" + authToken);
             localStorage.setItem('authToken', authToken);
             console.log("Login successful!");
-            navigate('/crud', { state: { authToken } });
+            navigate('/newpage', { state: { authToken } });
+
 
         } else {
             console.log("Error in login!");

@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.RegularExpressions;
 
 namespace React_Project1.Controllers
 {
@@ -140,6 +141,12 @@ namespace React_Project1.Controllers
                 return BadRequest("La contraseña debe tenre al menos: 1 mayúscula, 1 minúscula, 1 letra, 1 caracter especial, 8 dígitos");
             }
 
+            if (!IsValidName(request.NombreUsuario) || !IsValidName(request.ApelllidoUsuario))
+            {
+                return BadRequest("El nombre y el apellido deben tener al menos una letra mayúscula, una minúscula, y una longitud mínima de 3 caracteres.");
+            }
+
+
             await _dbcontext.Usuarios.AddAsync(request);
             await _dbcontext.SaveChangesAsync();
 
@@ -189,6 +196,11 @@ namespace React_Project1.Controllers
             {
                 Console.WriteLine("ContraseñaMal");
                 return BadRequest("La contraseña no cumple con los requisitos.\nAl menos: 1 mayúscula, 1 minúscula, 1 letra, 1 caracter especial, 8 dígitos");
+            }
+
+            if (!IsValidName(request.NombreUsuario) || !IsValidName(request.ApelllidoUsuario))
+            {
+                return BadRequest("El nombre y el apellido deben tener al menos una letra mayúscula, una minúscula, y una longitud mínima de 3 caracteres.");
             }
 
             // Update other fields except CorreoUsuario
@@ -298,6 +310,13 @@ namespace React_Project1.Controllers
             }
             
             
+        }
+
+        private bool IsValidName(string name)
+        {
+            // Regular expression to match a string with at least one uppercase letter, one lowercase letter, and a minimum length of 3 characters
+            string pattern = @"^(?=.*[a-z])(?=.*[A-Z]).{3,}$";
+            return Regex.IsMatch(name, pattern);
         }
 
 

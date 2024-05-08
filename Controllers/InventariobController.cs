@@ -31,6 +31,11 @@ namespace React_Project1.Controllers
         [Route("GuardarInv2")]
         public async Task<IActionResult> GuardarInv2([FromBody] Inventario2 request)
         {
+            if (string.IsNullOrWhiteSpace(request.NombreIngrediente2) || request.CantidadIngrediente2 <= 0 || string.IsNullOrWhiteSpace(request.UnidadIngrediente2))
+            {
+                return BadRequest("Todos los campos deben ser completados y la cantidad debe ser mayor que cero.");
+            }
+
             await _dbcontext.Invenatio2.AddAsync(request);
             await _dbcontext.SaveChangesAsync();
 
@@ -49,7 +54,15 @@ namespace React_Project1.Controllers
                 return NotFound("No hay ese item en el inventario");
             }
 
-            existingItem.CantidadIngrediente2 = request.CantidadIngrediente2;
+            if(request.CantidadIngrediente2 >= 0)
+            {
+                existingItem.CantidadIngrediente2 = request.CantidadIngrediente2;
+            }
+            else
+            {
+                return BadRequest("La cantidad no puede ser menor a cero");
+            }
+
 
             _dbcontext.Invenatio2.Update(existingItem); // Actualiza la entidad existente en lugar de agregar una nueva instancia
             await _dbcontext.SaveChangesAsync();

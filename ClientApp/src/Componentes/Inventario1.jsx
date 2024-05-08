@@ -54,7 +54,8 @@ const Inventario1 = () => {
         const response = await fetch("api/inventarioa/GuardarInv1", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': `Bearer ${authToken}`,
             },
             body: JSON.stringify(inventario1)
         })
