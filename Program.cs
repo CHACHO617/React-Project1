@@ -33,11 +33,14 @@ using React_Project1.Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using React_Project1.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<BurgerService>();
+builder.Services.AddScoped<IInventarioService, InventarioService>();
 builder.Services.AddDbContext<IngWebProjectContext>();
 
 // JWT Authentication
