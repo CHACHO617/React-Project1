@@ -21,6 +21,14 @@ namespace React_Project1.Models
         public virtual DbSet<Inventario1> Invenatio1 { get; set; } = null!;
         public virtual DbSet<Inventario2> Invenatio2 { get; set; } = null!;
 
+        //
+        public virtual DbSet<Ingredient> Ingredients { get; set; } = null!;
+        public virtual DbSet<Recipe> Recipes { get; set; } = null!;
+        public virtual DbSet<RecipeIngredient> RecipeIngredients { get;set;} = null!;
+
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -68,6 +76,21 @@ namespace React_Project1.Models
                     .IsUnicode(false)
                     .HasColumnName("nombreUsuario");
             });
+
+
+            //
+            modelBuilder.Entity<RecipeIngredient>()
+            .HasKey(ri => new { ri.RecipeId, ri.IngredientId });
+
+            modelBuilder.Entity<RecipeIngredient>()
+                .HasOne(ri => ri.Recipe)
+                .WithMany(r => r.RecipeIngredients)
+                .HasForeignKey(ri => ri.RecipeId);
+
+            modelBuilder.Entity<RecipeIngredient>()
+                .HasOne(ri => ri.Ingredient)
+                .WithMany(i => i.RecipeIngredients)
+                .HasForeignKey(ri => ri.IngredientId);
 
             OnModelCreatingPartial(modelBuilder);
         }

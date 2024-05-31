@@ -35,8 +35,6 @@ namespace React_Project1.Controllers
             _dbContext.UpdateRange(inventory2);
             await _dbContext.SaveChangesAsync();
         }
-
-
     }
 }
 

@@ -10,7 +10,7 @@ import Login from "./Componentes/Login";
 import LoginCliente from "./Componentes/LoginCliente"
 import Inventario1 from "./Componentes/Inventario1";
 import Inventario2 from "./Componentes/Inventario2";
-import PrepareBurgerForm from "./Componentes/PrepareBurgerForm";
+import PrepareBurgerForm1 from "./Componentes/PrepareBurgerForm1";
 
 const App = () => {
 
@@ -23,7 +23,7 @@ const App = () => {
             <Route path="/loginadmin" element={<Login />} />
             <Route path="/crudinventario1" element={<Inventario1 />} />
             <Route path="/crudinventario2" element={<Inventario2 />} />
-                <Route path="/newpage" element={<PrepareBurgerForm/>} />
+                <Route path="/newpage" element={<PrepareBurgerForm1/>} />
         </Routes>
     </div>
 

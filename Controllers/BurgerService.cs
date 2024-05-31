@@ -1,4 +1,5 @@
-﻿using React_Project1.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using React_Project1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +10,32 @@ namespace React_Project1.Controllers
     public class BurgerService
     {
         private readonly IInventarioService _inventarioService;
+        //
+        private readonly RecipeService _recipeService;
+        //
 
-        public BurgerService(IInventarioService inventarioService)
-        {
+       
+        public BurgerService(IInventarioService inventarioService, RecipeService recipeService)
+       {
             _inventarioService = inventarioService;
+            _recipeService = recipeService;
         }
+       
 
         public async Task<List<BurgerPreparationResult>> PrepareBurgersAndUpdateInventory(Dictionary<string, int> burgersToPrepare)
         {
             Console.WriteLine("ENTRO");
             var inventory1 = await _inventarioService.GetInventario1Async();
-            foreach (var item in inventory1)
+            /*foreach (var item in inventory1)
             {
                 Console.WriteLine($"ID: {item.IdInventario1}, Name: {item.NombreIngrediente1}, Quantity: {item.CantidadIngrediente1}, Unit: {item.UnidadIngrediente1}");
             }
-            Console.WriteLine(inventory1);
+            Console.WriteLine(inventory1);*/
             var inventory2 = await _inventarioService.GetInventario2Async();
 
             var results = new List<BurgerPreparationResult>();
 
-            var recipes = new List<Receta>
+            /*var recipes = new List<Receta>
             {
                 new Receta
                 {
@@ -49,8 +56,9 @@ namespace React_Project1.Controllers
                         new Item { NombreItem = "Lechuga", CantidadItem = 2 }
                     }
                 }
-            };
+            };*/
 
+            /*
             foreach (var burger in burgersToPrepare)
             {
                 var recipe = recipes.FirstOrDefault(r => r.BurgerName == burger.Key);
@@ -59,7 +67,18 @@ namespace React_Project1.Controllers
                     var result = PrepareBurger(burger.Key, inventory1, inventory2, recipe.IngredientsBurger, burger.Value);
                     results.Add(result);
                 }
+            }*/
+
+            foreach (var burger in burgersToPrepare)
+            {
+                var recipe = _recipeService.GetRecipeByName(burger.Key);
+                if (recipe != null)
+                {
+                    var result = PrepareBurger(burger.Key, inventory1, inventory2, recipe.RecipeIngredients, burger.Value);
+                    results.Add(result);
+                }
             }
+
 
             await _inventarioService.UpdateInventory1Async(inventory1);
             await _inventarioService.UpdateInventory2Async(inventory2);
@@ -67,22 +86,23 @@ namespace React_Project1.Controllers
             return results;
         }
 
-        public BurgerPreparationResult PrepareBurger(string burgerName, List<Inventario1> inventory1, List<Inventario2> inventory2, List<Item> recipe, int burgersToPrepare)
+        public BurgerPreparationResult PrepareBurger(string burgerName, List<Inventario1> inventory1, List<Inventario2> inventory2, ICollection<RecipeIngredient> recipeIngredients, int burgersToPrepare)
         {
             int preparedFromInventory1 = 0;
             int preparedFromInventory2 = 0;
 
             for (int i = 0; i < burgersToPrepare; i++)
             {
-                if (CanPrepareBurger1(inventory1, recipe))
+
+                if (CanPrepareBurger1(inventory1, recipeIngredients))
                 {
                     preparedFromInventory1++;
-                    UpdateInventory1(inventory1, recipe);
+                    UpdateInventory1(inventory1, recipeIngredients);
                 }
-                else if (CanPrepareBurger2(inventory2, recipe))
+                else if (CanPrepareBurger2(inventory2, recipeIngredients))
                 {
                     preparedFromInventory2++;
-                    UpdateInventory2(inventory2, recipe);
+                    UpdateInventory2(inventory2, recipeIngredients);
                 }
                 else
                 {
@@ -99,7 +119,7 @@ namespace React_Project1.Controllers
             };
         }
 
-        private bool CanPrepareBurger1(List<Inventario1> inventory, List<Item> recipe)
+        /*private bool CanPrepareBurger1(List<Inventario1> inventory, List<Item> recipe)
         {
             foreach (var item in recipe)
             {
@@ -143,7 +163,123 @@ namespace React_Project1.Controllers
                     invItem.CantidadIngrediente2 -= item.CantidadItem;
                 }
             }
+        }*/
+
+        private bool CanPrepareBurger1(List<Inventario1> inventory, /*string burgerName*/  ICollection<RecipeIngredient> recipeIngredients)
+        {
+            /*var recipe = await _recipeService.GetRecipeByName(burgerName);
+            if (recipe == null)
+            {
+                return false;
+            }
+
+            foreach (var item in recipe.IngredientsBurger)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente1 == item.NombreItem);
+                if (invItem == null || invItem.CantidadIngrediente1 < item.CantidadItem)
+                {
+                    return false;
+                }
+            }
+            return true;*/
+            foreach (var ingredient in recipeIngredients)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente1 == ingredient.Ingredient.NombreIngrediente);
+                if (invItem.UnidadIngrediente1 == ingredient.Ingredient.UnidadIngrediente)
+                {
+                    Console.WriteLine("Unidades iguales");
+                    Console.WriteLine(invItem.UnidadIngrediente1 + " *** " + ingredient.Ingredient.UnidadIngrediente);
+                    if (invItem == null || invItem.CantidadIngrediente1 < ingredient.CantidadItem)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Unidades diferentes");
+                }
+                
+                
+                
+            }
+            return true;
         }
+
+        private bool CanPrepareBurger2(List<Inventario2> inventory, ICollection<RecipeIngredient> recipeIngredients)
+        {
+              
+            foreach (var ingredient in recipeIngredients)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente2 == ingredient.Ingredient.NombreIngrediente);
+                if (invItem == null || invItem.CantidadIngrediente2 < ingredient.CantidadItem)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /*private async Task UpdateInventory1(List<Inventario1> inventory, string burgerName)
+        {
+            var recipe = await _recipeService.GetRecipeByName(burgerName);
+            if (recipe == null)
+            {
+                return;
+            }
+
+            foreach (var item in recipe.IngredientsBurger)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente1 == item.NombreItem);
+                if (invItem != null)
+                {
+                    invItem.CantidadIngrediente1 -= item.CantidadItem;
+                }
+            }
+        }
+
+        private async Task UpdateInventory2(List<Inventario2> inventory, string burgerName)
+        {
+            var recipe = await _recipeService.GetRecipeByName(burgerName);
+            if (recipe == null)
+            {
+                return;
+            }
+
+            foreach (var item in recipe.IngredientsBurger)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente2 == item.NombreItem);
+                if (invItem != null)
+                {
+                    invItem.CantidadIngrediente2 -= item.CantidadItem;
+                }
+            }
+        }*/
+        private void UpdateInventory1(List<Inventario1> inventory, ICollection<RecipeIngredient> recipeIngredients)
+        {
+            foreach (var ingredient in recipeIngredients)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente1 == ingredient.Ingredient.NombreIngrediente);
+                if (invItem != null)
+                {
+                    invItem.CantidadIngrediente1 -= ingredient.CantidadItem;
+                }
+            }
+        }
+
+        private void UpdateInventory2(List<Inventario2> inventory, ICollection<RecipeIngredient> recipeIngredients)
+        {
+            foreach (var ingredient in recipeIngredients)
+            {
+                var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente2 == ingredient.Ingredient.NombreIngrediente);
+                if (invItem != null)
+                {
+                    invItem.CantidadIngrediente2 -= ingredient.CantidadItem;
+                }                
+            }
+        }
+
+
 
     }
 }
+ 

@@ -41,6 +41,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<BurgerService>();
 builder.Services.AddScoped<IInventarioService, InventarioService>();
+builder.Services.AddScoped<RecipeService>();
 builder.Services.AddDbContext<IngWebProjectContext>();
 
 // JWT Authentication

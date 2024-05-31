@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using React_Project1.Models;
 
@@ -10,9 +11,10 @@ using React_Project1.Models;
 namespace React_Project1.Migrations
 {
     [DbContext(typeof(IngWebProjectContext))]
-    partial class IngWebProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20240527030425_recipes")]
+    partial class recipes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
