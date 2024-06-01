@@ -26,7 +26,9 @@ namespace React_Project1.Models
         public virtual DbSet<Recipe> Recipes { get; set; } = null!;
         public virtual DbSet<RecipeIngredient> RecipeIngredients { get;set;} = null!;
 
-
+        //
+        public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -93,6 +95,12 @@ namespace React_Project1.Models
                 .HasForeignKey(ri => ri.IngredientId);
 
             OnModelCreatingPartial(modelBuilder);
+
+            //
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderDetails)
+                .WithOne(od => od.Order)
+                .HasForeignKey(od => od.OrderId);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

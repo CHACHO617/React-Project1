@@ -42,6 +42,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<BurgerService>();
 builder.Services.AddScoped<IInventarioService, InventarioService>();
 builder.Services.AddScoped<RecipeService>();
+//
+builder.Services.AddScoped<OrderService>();
+//
 builder.Services.AddDbContext<IngWebProjectContext>();
 
 // JWT Authentication

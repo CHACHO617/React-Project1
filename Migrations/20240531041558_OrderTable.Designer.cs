@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using React_Project1.Models;
 
@@ -11,9 +12,10 @@ using React_Project1.Models;
 namespace React_Project1.Migrations
 {
     [DbContext(typeof(IngWebProjectContext))]
-    partial class IngWebProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20240531041558_OrderTable")]
+    partial class OrderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +50,9 @@ namespace React_Project1.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IngredientId"), 1L, 1);
+
+                    b.Property<int>("CantidadIngrediente")
+                        .HasColumnType("int");
 
                     b.Property<string>("NombreIngrediente")
                         .IsRequired()

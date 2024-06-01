@@ -13,18 +13,20 @@ namespace React_Project1.Controllers
         //
         private readonly RecipeService _recipeService;
         //
-
+        private readonly OrderService _orderService;
        
-        public BurgerService(IInventarioService inventarioService, RecipeService recipeService)
+        public BurgerService(IInventarioService inventarioService, RecipeService recipeService, OrderService orderService)
        {
             _inventarioService = inventarioService;
             _recipeService = recipeService;
+            _orderService = orderService; 
         }
        
 
         public async Task<List<BurgerPreparationResult>> PrepareBurgersAndUpdateInventory(Dictionary<string, int> burgersToPrepare)
         {
             Console.WriteLine("ENTRO");
+            Console.WriteLine(GlobalUser.Email);
             var inventory1 = await _inventarioService.GetInventario1Async();
             /*foreach (var item in inventory1)
             {
@@ -82,6 +84,8 @@ namespace React_Project1.Controllers
 
             await _inventarioService.UpdateInventory1Async(inventory1);
             await _inventarioService.UpdateInventory2Async(inventory2);
+
+            await _orderService.SaveOrderAsync(GlobalUser.Email, results);
 
             return results;
         }

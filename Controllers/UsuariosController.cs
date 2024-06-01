@@ -278,6 +278,7 @@ namespace React_Project1.Controllers
             }
 
             var token = GenerateJwtToken(user);
+            GlobalUser.Email = user.CorreoUsuario;
 
             return Ok(new { Token = token });
         }
