@@ -201,6 +201,7 @@ namespace React_Project1.Controllers
                 else
                 {
                     Console.WriteLine("Unidades diferentes");
+                    return false;
                 }
                 
                 
@@ -215,10 +216,21 @@ namespace React_Project1.Controllers
             foreach (var ingredient in recipeIngredients)
             {
                 var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente2 == ingredient.Ingredient.NombreIngrediente);
-                if (invItem == null || invItem.CantidadIngrediente2 < ingredient.CantidadItem)
+                if (invItem.UnidadIngrediente2 == ingredient.Ingredient.UnidadIngrediente)
                 {
+                    Console.WriteLine("Unidades iguales");
+                    Console.WriteLine(invItem.UnidadIngrediente2 + " *** " + ingredient.Ingredient.UnidadIngrediente);
+                    if (invItem == null || invItem.CantidadIngrediente2 < ingredient.CantidadItem)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Unidades diferentes");
                     return false;
                 }
+
             }
             return true;
         }

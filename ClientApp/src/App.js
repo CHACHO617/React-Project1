@@ -11,6 +11,8 @@ import LoginCliente from "./Componentes/LoginCliente"
 import Inventario1 from "./Componentes/Inventario1";
 import Inventario2 from "./Componentes/Inventario2";
 import PrepareBurgerForm1 from "./Componentes/PrepareBurgerForm1";
+import Ingredientes from "./Componentes/Ingredientes";
+import AllIngredientRecipes from "./Componentes/AllIngredientRecipes";
 
 const App = () => {
 
@@ -23,7 +25,8 @@ const App = () => {
             <Route path="/loginadmin" element={<Login />} />
             <Route path="/crudinventario1" element={<Inventario1 />} />
             <Route path="/crudinventario2" element={<Inventario2 />} />
-                <Route path="/newpage" element={<PrepareBurgerForm1/>} />
+                <Route path="/newpage" element={<PrepareBurgerForm1 />} />
+                <Route path="/crudingredientes" element={<AllIngredientRecipes/> }/>
         </Routes>
     </div>
 
