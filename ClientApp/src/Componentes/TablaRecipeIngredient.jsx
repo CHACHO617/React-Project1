@@ -1,29 +1,30 @@
 ﻿import React from 'react';
 import { Table, Button } from "reactstrap";
 
-const TablaIngredientes = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarIngrediente }) => {
+const TablaRecipeIngredient = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarRecipeIngredient }) => {
     return (
         <Table>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre Ingrediente</th>
-                    <th>Unidad Ingrediente</th>
+                    <th>Id Receta</th>
+                    <th>Id Ingrediente</th>
+                    <th>Cantidad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {data.map((ingrediente) => (
-                    <tr key={ingrediente.ingredientId}>
-                        <th scope="row">{ingrediente.ingredientId}</th>
-                        <td>{ingrediente.nombreIngrediente}</td>
-                        <td>{ingrediente.unidadIngrediente}</td>
+                {data.map((recipeIngredient) => (
+                    <tr key={`${recipeIngredient.recipeId}-${recipeIngredient.ingredientId}`}>
+                        <td>{recipeIngredient.recipeId}</td>
+                        <td>{recipeIngredient.ingredientId}</td>
+                        <td>{recipeIngredient.cantidadItem}</td>
+                        
                         <td>
                             <Button
                                 size="sm"
                                 color="warning"
                                 onClick={() => {
-                                    setEditar(ingrediente);
+                                    setEditar(recipeIngredient);
                                     setMostrarModal(!mostrarModal);
                                 }}
                             >
@@ -33,16 +34,16 @@ const TablaIngredientes = ({ data, setEditar, mostrarModal, setMostrarModal, eli
                             <Button
                                 size="sm"
                                 color="danger"
-                                onClick={() => eliminarIngrediente(ingrediente.ingredientId)}
+                                onClick={() => eliminarRecipeIngredient(recipeIngredient.recipeId, recipeIngredient.ingredientId)}
                             >
                                 Eliminar
                             </Button>
                         </td>
-                    </tr>
+                     </tr>
                 ))}
             </tbody>
         </Table>
     );
 };
 
-export default TablaIngredientes;
+export default TablaRecipeIngredient;

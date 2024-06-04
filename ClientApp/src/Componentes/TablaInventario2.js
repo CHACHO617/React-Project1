@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React from 'react';
 import { Table, Button } from 'reactstrap';
 
 const TablaInventario2 = ({ data, setEditar, mostrarModal, setMostrarmodal, eliminarInventario2 }) => {

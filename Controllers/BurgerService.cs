@@ -186,26 +186,40 @@ namespace React_Project1.Controllers
                 }
             }
             return true;*/
+
             foreach (var ingredient in recipeIngredients)
             {
                 var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente1 == ingredient.Ingredient.NombreIngrediente);
-                if (invItem.UnidadIngrediente1 == ingredient.Ingredient.UnidadIngrediente)
+                if (invItem == null)
                 {
-                    Console.WriteLine("Unidades iguales");
-                    Console.WriteLine(invItem.UnidadIngrediente1 + " *** " + ingredient.Ingredient.UnidadIngrediente);
-                    if (invItem == null || invItem.CantidadIngrediente1 < ingredient.CantidadItem)
-                    {
-                        return false;
-                    }
+                    Console.WriteLine("No existe este item en el inventario 1");
+                    return false;
+                                        
                 }
                 else
                 {
-                    Console.WriteLine("Unidades diferentes");
-                    return false;
+                    Console.WriteLine("-----" + invItem.NombreIngrediente1);
+
+                    if (invItem.UnidadIngrediente1 == ingredient.Ingredient.UnidadIngrediente && invItem != null)
+                    {
+                        Console.WriteLine("Unidades iguales");
+                        Console.WriteLine(invItem.UnidadIngrediente1 + " *** " + ingredient.Ingredient.UnidadIngrediente);
+                        if (invItem == null || invItem.CantidadIngrediente1 < ingredient.CantidadItem)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unidades diferentes");
+                        return false;
+                    }
+
                 }
-                
-                
-                
+
+
+
+
             }
             return true;
         }
@@ -216,21 +230,32 @@ namespace React_Project1.Controllers
             foreach (var ingredient in recipeIngredients)
             {
                 var invItem = inventory.FirstOrDefault(i => i.NombreIngrediente2 == ingredient.Ingredient.NombreIngrediente);
-                if (invItem.UnidadIngrediente2 == ingredient.Ingredient.UnidadIngrediente)
+                if (invItem == null)
                 {
-                    Console.WriteLine("Unidades iguales");
-                    Console.WriteLine(invItem.UnidadIngrediente2 + " *** " + ingredient.Ingredient.UnidadIngrediente);
-                    if (invItem == null || invItem.CantidadIngrediente2 < ingredient.CantidadItem)
-                    {
-                        return false;
-                    }
+                    Console.WriteLine("No existe este item en el inventario 2");
+                    return false;
+
                 }
                 else
                 {
-                    Console.WriteLine("Unidades diferentes");
-                    return false;
-                }
+                    Console.WriteLine("-----" + invItem.NombreIngrediente2);
+                    if (invItem.UnidadIngrediente2 == ingredient.Ingredient.UnidadIngrediente && invItem != null)
+                    {
+                        Console.WriteLine("Unidades iguales");
+                        Console.WriteLine(invItem.UnidadIngrediente2 + " +++ " + ingredient.Ingredient.UnidadIngrediente);
+                        if (invItem == null || invItem.CantidadIngrediente2 < ingredient.CantidadItem)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unidades diferentes");
+                        return false;
+                    }
 
+                }
+               
             }
             return true;
         }

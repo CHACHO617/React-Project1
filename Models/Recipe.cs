@@ -6,7 +6,10 @@ namespace React_Project1.Models
     {
         [Key]
         public int RecipeId { get; set; }
+
+        [Required]
         public string RecipeName { get; set; }
-        public ICollection<RecipeIngredient> RecipeIngredients { get; set; }    
+
+        public ICollection<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
     }
 }

@@ -23,8 +23,8 @@ namespace React_Project1.Controllers
             return await _dbcontext.Ingredients.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        [Route("GetIngredientId")]
+        [HttpGet]
+        [Route("GetIngredientId/{id:int}")]
         public async Task <ActionResult<Ingredient>> GetIngredientId(int id)
         {
             var ingredient = await _dbcontext.Ingredients.FindAsync(id);
@@ -36,38 +36,6 @@ namespace React_Project1.Controllers
 
             return ingredient;
         }
-
-        /*
-        [HttpPut]
-        [Route("PutIngredient")]
-        public async Task<IActionResult> PutIngredient(int id, [FromBody] Ingredient ingredient)
-        {
-            if (id != ingredient.IngredientId)
-            {
-                return BadRequest("Ingredient ID mismatch");
-            }
-
-            _dbcontext.Entry(ingredient).State = EntityState.Modified;
-
-            try
-            {
-                await _dbcontext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!IngredientExists(id))
-                {
-                    return NotFound($"Ingredient with ID {id} not found");
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }*/
-
         
         [HttpPut]
         [Route("PutIngredient")]
@@ -118,10 +86,5 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
         
-        private bool IngredientExists(int id)
-        {
-            return _dbcontext.Ingredients.Any(e => e.IngredientId == id);
-        }
-
     }
 }

@@ -16,6 +16,7 @@ namespace React_Project1.Models
         {
         }
 
+
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
         public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Inventario1> Invenatio1 { get; set; } = null!;
@@ -104,5 +105,12 @@ namespace React_Project1.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public async Task<int> AddRecipeIngredientAsync(int recipeId, int ingredientId, int cantidadItem)
+        {
+            return await Database.ExecuteSqlRawAsync(
+                "EXEC AddRecipeIngredient @p0, @p1, @p2",
+                recipeId, ingredientId, cantidadItem);
+        }
     }
 }
