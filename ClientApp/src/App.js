@@ -13,6 +13,7 @@ import Inventario2 from "./Componentes/Inventario2";
 import PrepareBurgerForm1 from "./Componentes/PrepareBurgerForm1";
 import Ingredientes from "./Componentes/Ingredientes";
 import AllIngredientRecipes from "./Componentes/AllIngredientRecipes";
+import AllOrders from "./Componentes/AllOrders";
 
 const App = () => {
 
@@ -26,7 +27,8 @@ const App = () => {
             <Route path="/crudinventario1" element={<Inventario1 />} />
             <Route path="/crudinventario2" element={<Inventario2 />} />
                 <Route path="/newpage" element={<PrepareBurgerForm1 />} />
-                <Route path="/crudingredientes" element={<AllIngredientRecipes/> }/>
+                <Route path="/crudingredientes" element={<AllIngredientRecipes />} />
+                <Route path="/crudorders" element={<AllOrders />} />
         </Routes>
     </div>
 

@@ -1,6 +1,11 @@
 ﻿import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from "reactstrap";
 
 const PrepareBurgerForm = () => {
+    const navigate = useNavigate();
+    const authToken = localStorage.getItem('authToken');
+
     const [burgers, setBurgers] = useState([{ name: '', amount: 0 }]);
     const [result, setResult] = useState(null);
 
@@ -44,8 +49,19 @@ const PrepareBurgerForm = () => {
         }
     };
 
+    // If authToken is null, redirect to '/'
+    if (!authToken) {
+        window.location.href = 'https://localhost:44491/';
+        return null; // Return null or a loading indicator if necessary
+    }
+
+    const cerrarSesion = () => {
+        window.location.href = 'https://localhost:44491/';
+    };
+
     return (
-        <div>
+        <div className="position-relative">
+            <Button color="secondary" className="position-absolute top-0 end-0 m-3" onClick={cerrarSesion}>Cerrar Sesión</Button>
             <form onSubmit={handleSubmit}>
                 {burgers.map((burger, index) => (
                     <div key={index}>
