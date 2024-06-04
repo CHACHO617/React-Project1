@@ -34,7 +34,7 @@ const TablaRecipeIngredient = ({ data, setEditar, mostrarModal, setMostrarModal,
                             <Button
                                 size="sm"
                                 color="danger"
-                                onClick={() => eliminarRecipeIngredient(recipeIngredient.recipeId, recipeIngredient.ingredientId)}
+                                onClick={() => eliminarRecipeIngredient(recipeIngredient)}
                             >
                                 Eliminar
                             </Button>

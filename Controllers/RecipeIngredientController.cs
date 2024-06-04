@@ -41,9 +41,18 @@ namespace React_Project1.Controllers
                 return NotFound("The recipe ingredient combination does not exist.");
             }
 
-            // Update the fields
-            existingEntity.CantidadItem = recipeIngredient.CantidadItem;
-            // Update other fields if necessary
+
+            if (recipeIngredient.CantidadItem <= 0)
+            {
+                return BadRequest("No puedes ingresar valores que sean 0 o menores a 0");
+            }
+            else
+            {
+                // Update the fields
+                existingEntity.CantidadItem = recipeIngredient.CantidadItem;
+                // Update other fields if necessary
+            }
+
 
             try
             {
@@ -78,6 +87,11 @@ namespace React_Project1.Controllers
                 return BadRequest("Invalid request");
             }
 
+            if (request.CantidadItem <= 0)
+            {
+                return BadRequest("No puedes ingresar valores que sean 0 o menores a 0");
+            }
+
             try
             {
                 await _dbcontext.AddRecipeIngredientAsync(request.RecipeId, request.IngredientId, request.CantidadItem);
@@ -89,6 +103,23 @@ namespace React_Project1.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding recipe ingredient: {ex.Message}");
             }
 
+        }
+
+        [HttpDelete]
+        [Route("DeleteRecipeIngredient/{recipeId}/{ingredientId}")]
+        public async Task<ActionResult> DeleteRecipeIngredient(int recipeId, int ingredientId)
+        {
+            Console.WriteLine("Its In");
+            try
+            {
+                await _dbcontext.RemoveRecipeIngredient(recipeId, ingredientId);
+
+                return StatusCode(StatusCodes.Status200OK, "Recipe ingredient deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error deleting recipe ingredient: {ex.Message}");
+            }
         }
     }
 }

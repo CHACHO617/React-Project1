@@ -69,24 +69,30 @@ const RecipeIngredient = () => {
             mostrarRecipeIngredients();
         } else {
             const errorMessage = await response.text();
-            alert("HOLAAA" + errorMessage);
+            alert(errorMessage);
         }
     };
 
-    const eliminarRecipeIngredient = async (id) => {
-        if (!window.confirm("¿Estás seguro que deseas eliminar el ingrediente de la receta seleccionada?")) {
+    const eliminarRecipeIngredient = async (recipeIngredient) => {
+        if (!window.confirm("¿Estás seguro que deseas eliminar la receta seleccionada?")) {
             return;
         }
-        const response = await fetch(`/api/recipeingredient/DeleteRecipeIngredients/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-            }
-        });
-        if (response.ok) {
-            mostrarRecipeIngredients();
-        }
-    };
+        console.log(recipeIngredient.recipeId + "<>" + recipeIngredient.ingredientId);
+
+        const response = await fetch(`/api/recipeingredient/DeleteRecipeIngredient/${recipeIngredient.recipeId}/${recipeIngredient.ingredientId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${authToken}`,
+        },
+    });
+
+    if (response.ok) {
+        mostrarRecipeIngredients();
+    } else {
+        const errorMessage = await response.text();
+        alert(errorMessage);
+    }
+};
 
     return (
         <Container>

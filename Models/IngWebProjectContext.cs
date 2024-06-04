@@ -112,5 +112,13 @@ namespace React_Project1.Models
                 "EXEC AddRecipeIngredient @p0, @p1, @p2",
                 recipeId, ingredientId, cantidadItem);
         }
+
+        public async Task<int> RemoveRecipeIngredient(int recipeId, int ingredientId)
+        {
+            return await Database.ExecuteSqlRawAsync(
+                "EXEC RemoveRecipeIngredient @p0, @p1",
+                recipeId, ingredientId);
+        }
+
     }
 }
