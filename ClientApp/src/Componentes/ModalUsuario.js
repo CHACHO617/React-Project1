@@ -64,7 +64,7 @@ const ModalUsuario = ({ mostrarModal, setMostrarmodal, guardarUsuario, editar, s
 
                     <FormGroup>
                         <Label>Correo</Label>
-                        <Input name="correoUsuario" onChange={(e) => actualizarDato(e)} value={usuario.correoUsuario}/>
+                        <Input name="correoUsuario" onChange={(e) => actualizarDato(e)} value={usuario.correoUsuario} disabled={editar !== null} />
                     </FormGroup>
 
                     <FormGroup>

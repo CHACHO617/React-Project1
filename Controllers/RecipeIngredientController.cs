@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using React_Project1.Models;
 
@@ -14,6 +15,7 @@ namespace React_Project1.Controllers
             _dbcontext = dbcontext;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetRecipeIngredients")]
         public async Task<ActionResult<IEnumerable<RecipeIngredient>>> GetRecipeIngredients()
@@ -21,6 +23,7 @@ namespace React_Project1.Controllers
             return await _dbcontext.RecipeIngredients.ToListAsync();
         }
 
+        [Authorize]
         [HttpPut]
         [Route("PutRecipeIngredient")]
         public async Task<IActionResult> PutRecipeIngredient(RecipeIngredient recipeIngredient)
@@ -78,6 +81,7 @@ namespace React_Project1.Controllers
             return _dbcontext.RecipeIngredients.Any(e => e.RecipeId == recipeId && e.IngredientId == ingredientId);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("PostRecipeIngredient")]
         public async Task<ActionResult> PostRecipeIngredient([FromBody] RecipeIngredient request)
@@ -105,6 +109,7 @@ namespace React_Project1.Controllers
 
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("DeleteRecipeIngredient/{recipeId}/{ingredientId}")]
         public async Task<ActionResult> DeleteRecipeIngredient(int recipeId, int ingredientId)

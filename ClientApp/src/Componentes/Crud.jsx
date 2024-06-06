@@ -122,10 +122,18 @@ const App = () => {
 
     const redirectInventario1 = () => {
         window.location.href = 'https://localhost:44491/crudinventario1';
-    };
 
+    };
     const redirectInventario2 = () => {
         window.location.href = 'https://localhost:44491/crudinventario2';
+    };
+
+    const redirectRecetas = () => {
+        window.location.href = 'https://localhost:44491/crudingredientes';
+    };
+
+    const redirectOrdenes = () => {
+        window.location.href = 'https://localhost:44491/crudorders';
     };
 
     const cerrarSesion = () => {
@@ -138,7 +146,9 @@ const App = () => {
             <div className="d-flex justify-content-between mt-3" style={{ padding: "0 8%" }}>
                 <div>
                     <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectInventario1}>Inventario 1</Button>
-                    <Button color="primary" onClick={redirectInventario2}>Inventario 2</Button>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectInventario2}>Inventario 2</Button>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectRecetas}>Recetas</Button>
+                    <Button color="primary" onClick={redirectOrdenes}>Ordenes</Button>
                 </div>
                 <Button color="secondary" onClick={cerrarSesion}>Cerrar Sesión</Button>
             </div>

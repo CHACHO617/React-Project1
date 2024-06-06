@@ -16,6 +16,7 @@ namespace React_Project1.Controllers
             _dbcontext = dbcontext;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetIngredients")]
         public async Task<ActionResult<IEnumerable<Ingredient>>> GetIngredients()
@@ -23,6 +24,7 @@ namespace React_Project1.Controllers
             return await _dbcontext.Ingredients.ToListAsync();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetIngredientId/{id:int}")]
         public async Task <ActionResult<Ingredient>> GetIngredientId(int id)
@@ -36,7 +38,8 @@ namespace React_Project1.Controllers
 
             return ingredient;
         }
-        
+
+        [Authorize]
         [HttpPut]
         [Route("PutIngredient")]
         public async Task<IActionResult> PutIngredient([FromBody] Ingredient request)
@@ -59,6 +62,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
 
+        [Authorize]
         [HttpPost]       
         [Route("PostIngredient")]
         public async Task<ActionResult<Ingredient>> PostIngredient([FromBody] Ingredient ingredient)
@@ -74,6 +78,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("DeleteIngredient/{id:int}")]
         public async Task<IActionResult> DeleteIngredient(int id)

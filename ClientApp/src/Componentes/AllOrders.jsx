@@ -16,9 +16,7 @@ const redirectInventario1 = () => {
 const redirectInventario2 = () => {
     window.location.href = 'https://localhost:44491/crudinventario2';
 };
-/*const redirectLogs = () => {
-    window.location.href = 'https://localhost:44491/crudinventario2';
-};*/
+
 const redirectRecipes = () => {
     window.location.href = 'https://localhost:44491/crudingredientes';
 };
@@ -31,9 +29,10 @@ const TripleIngredientTable = () => {
         <div>
             <div className="d-flex justify-content-between mt-3" style={{ padding: "0 8%" }}>
                 <div>
-                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectUsuarios}>Usuarios</Button>
                     <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectInventario1}>Inventario 1</Button>
-                    <Button color="primary" onClick={redirectInventario2}>Inventario 2</Button>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectInventario2}>Inventario 2</Button>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectUsuarios}>Usuarios</Button>
+                    <Button color="primary" style={{ marginRight: "10px" }} onClick={redirectRecipes}>Recetas</Button>
                 </div>
                 <Button color="secondary" onClick={cerrarSesion}>Cerrar Sesión</Button>
             </div>

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using React_Project1.Models;
 
 namespace React_Project1.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class RecipeController : ControllerBase
@@ -14,6 +16,7 @@ namespace React_Project1.Controllers
             _dbcontext = dbcontext;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetRecipes")]
         public async Task<ActionResult<IEnumerable<Recipe>>> GetRecipes()
@@ -21,6 +24,7 @@ namespace React_Project1.Controllers
             return await _dbcontext.Recipes.ToListAsync();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetRecipeId/{id:int}")]
         public async Task<ActionResult<Recipe>> GetIngredientId(int id)
@@ -35,6 +39,7 @@ namespace React_Project1.Controllers
             return recipe;
         }
 
+        [Authorize]
         [HttpPut]
         [Route("PutRecipe")]
         public async Task<IActionResult> PutRecipe([FromBody] Recipe request)
@@ -56,6 +61,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
 
+        [Authorize]
         [HttpPost]
         [Route("PostRecipe")]
         public async Task<ActionResult<Ingredient>> PostRecipe([FromBody] Recipe recipe)
@@ -71,6 +77,7 @@ namespace React_Project1.Controllers
             return StatusCode(StatusCodes.Status200OK, "ok");
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("DeleteRecipe/{id:int}")]
         public async Task<IActionResult> DeleteRecipe(int id)

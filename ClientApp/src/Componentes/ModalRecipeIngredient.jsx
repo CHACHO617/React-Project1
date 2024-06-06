@@ -17,6 +17,7 @@ const ModalRecipeIngredient = ({ mostrarModal, setMostrarModal, guardarRecipeIng
 
     const authToken = localStorage.getItem('authToken');
 
+
     const fetchRecipeData = async () => {
         try {
             const recipesResponse = await fetch("/api/recipe/GetRecipes", {

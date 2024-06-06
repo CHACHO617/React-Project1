@@ -4,6 +4,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 const OrderDetailsModal = ({ orderId, isOpen, toggle }) => {
     const [orderDetails, setOrderDetails] = useState([]);
 
+    const authToken = localStorage.getItem('authToken');
+
     useEffect(() => {
         const fetchOrderDetails = async () => {
             try {
@@ -11,6 +13,8 @@ const OrderDetailsModal = ({ orderId, isOpen, toggle }) => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
+                        'Authorization': `Bearer ${authToken}`, // Add the token with "Bearer" prefix
+
                     },
                 });
                 if (response.ok) {

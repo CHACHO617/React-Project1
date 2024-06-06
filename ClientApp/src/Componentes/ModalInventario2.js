@@ -68,7 +68,7 @@ const ModalInventario2 = ({ mostrarModal, setMostrarmodal, guardarInventario2, e
                     </FormGroup>
                     <FormGroup>
                         <Label>Cantidad Ingrediente</Label>
-                        <Input name="cantidadIngrediente2" onChange={(e) => actualizarDato(e)} value={inventario2.cantidadIngrediente2} />
+                        <Input name="cantidadIngrediente2" onChange={(e) => actualizarDato(e)} value={inventario2.cantidadIngrediente2} type="number" />
                     </FormGroup>
                     <FormGroup>
                         <Label>Unidad Ingrediente</Label>

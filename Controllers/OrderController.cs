@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using React_Project1.Models;
 
@@ -15,6 +16,7 @@ namespace React_Project1.Controllers
             _dbcontext = dbcontext;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetAllOrders")]
         public async Task<ActionResult<IEnumerable<Order>>> GetAllOrders()
@@ -22,6 +24,7 @@ namespace React_Project1.Controllers
             return await _dbcontext.Orders.ToListAsync();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetOrderId/{id:int}")]
         public async Task<ActionResult<Order>> GetOrderId(int id)
@@ -36,7 +39,7 @@ namespace React_Project1.Controllers
             return order;
         }
 
-        
+        [Authorize]
         [HttpGet]
         [Route("GetAllOrderDetails")]
         public async Task<ActionResult<IEnumerable<OrderDetail>>> GetAllOrderDetails()
@@ -44,6 +47,7 @@ namespace React_Project1.Controllers
             return await _dbcontext.OrderDetails.ToListAsync();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetOrderDetailId/{id:int}")]
         public async Task<ActionResult<OrderDetail>> GetOrderDetailId(int id)
@@ -58,6 +62,7 @@ namespace React_Project1.Controllers
             return order;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetOrderDetailsByOrderId/{orderId:int}")]
         public async Task<ActionResult<IEnumerable<OrderDetail>>> GetOrderDetailsByOrderId(int orderId)
