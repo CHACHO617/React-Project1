@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "reactstrap";
+import RecipeShow from "./RecipeShow";
 
 const PrepareBurgerForm = () => {
     const navigate = useNavigate();
@@ -60,32 +61,45 @@ const PrepareBurgerForm = () => {
     };
 
     return (
-        <div className="position-relative">
-            <Button color="secondary" className="position-absolute top-0 end-0 m-3" onClick={cerrarSesion}>Cerrar Sesión</Button>
-            <form onSubmit={handleSubmit}>
+        <div className="position-relative p-3">
+            <div style={{ position: 'absolute', top: 0, right: 0, padding: '10px' }}>
+                <Button color="secondary" onClick={cerrarSesion}>Cerrar Sesión</Button>
+            </div>
+            <div style={{ marginBottom: '20px' }}>
+                <RecipeShow />
+            </div>
+            <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
                 {burgers.map((burger, index) => (
-                    <div key={index}>
-                        <label>Burger Name:</label>
-                        <input
-                            type="text"
-                            value={burger.name}
-                            onChange={(e) => handleBurgerChange(index, 'name', e.target.value)}
-                            required
-                        />
-                        <label>Amount to Prepare:</label>
-                        <input
-                            type="number"
-                            value={burger.amount}
-                            onChange={(e) => handleBurgerChange(index, 'amount', e.target.value)}
-                            required
-                        />
+                    <div key={index} className="mb-3 row">
+                        <div className="col">
+                            <label>Burger Name:</label>
+                            <input
+                                type="text"
+                                value={burger.name}
+                                onChange={(e) => handleBurgerChange(index, 'name', e.target.value)}
+                                required
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="col">
+                            <label>Amount to Prepare:</label>
+                            <input
+                                type="number"
+                                value={burger.amount}
+                                onChange={(e) => handleBurgerChange(index, 'amount', e.target.value)}
+                                required
+                                className="form-control"
+                            />
+                        </div>
                     </div>
                 ))}
-                <button type="button" onClick={handleAddBurger}>Add Another Burger</button>
-                <button type="submit">Prepare Burgers</button>
+                <div className="d-flex flex-column align-items-start">
+                    <button type="button" onClick={handleAddBurger} className="btn btn-primary mb-3">Add Another Burger</button>
+                    <button type="submit" className="btn btn-success">Prepare Burgers</button>
+                </div>
             </form>
             {result && (
-                <div>
+                <div style={{ marginTop: '20px' }}>
                     <h2>Preparation Results:</h2>
                     <pre>{JSON.stringify(result, null, 2)}</pre>
                 </div>
