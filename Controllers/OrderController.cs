@@ -10,10 +10,13 @@ namespace React_Project1.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IngWebProjectContext _dbcontext;
+        private readonly OrderService _orderService;
 
-        public OrderController(IngWebProjectContext dbcontext)
+        public OrderController(IngWebProjectContext dbcontext, OrderService orderService)
         {
             _dbcontext = dbcontext;
+            _orderService = orderService;
+
         }
 
         [Authorize]
@@ -79,6 +82,18 @@ namespace React_Project1.Controllers
             return orderDetails;
         }
 
+        [HttpGet("mostUsedIngredient")]
+        public async Task<IActionResult> GetMostUsedIngredient([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            if (startDate > endDate)
+                return BadRequest("Start date must be before end date.");
+
+            var ingredient = await _orderService.GetMostUsedIngredientAsync(startDate, endDate);
+            if (ingredient == null)
+                return NotFound("No ingredients found in the specified date range.");
+
+            return Ok(ingredient);
+        }
 
     }
 }

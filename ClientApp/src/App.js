@@ -14,6 +14,7 @@ import PrepareBurgerForm1 from "./Componentes/PrepareBurgerForm1";
 import Ingredientes from "./Componentes/Ingredientes";
 import AllIngredientRecipes from "./Componentes/AllIngredientRecipes";
 import AllOrders from "./Componentes/AllOrders";
+import MostUsedIngredient from "./Componentes/MostUsedIngredient";
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
                 <Route path="/newpage" element={<PrepareBurgerForm1 />} />
                 <Route path="/crudingredientes" element={<AllIngredientRecipes />} />
                 <Route path="/crudorders" element={<AllOrders />} />
+                <Route path="/mostusedingredients" element={<MostUsedIngredient />} />
         </Routes>
     </div>
 
